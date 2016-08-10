@@ -1,0 +1,137 @@
+'.source.json':
+    'Website Field Item':
+        'prefix':'fitem'
+        'body':',\n"${1:title}": {\n\t"title": "${2:Title}",\n\t"type": "${3:text}"\n}$4'
+    'Website JSON':
+        'prefix':'webj'
+        'body':'{\n\t"groups": {\n\t\t"${1:main}": {\n\t\t\t"title": "${2:Main Content}",\n\t\t\t"titles": "${2:Main Content}s",\n\t\t\t"multi": false,\n\t\t\t"multi_media": {},\n\t\t\t"fields": {\n\t\t\t\t"content": {\n\t\t\t\t\t"title": "${2:Main Content}",\n\t\t\t\t\t"type": "wysiwyg"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t"${3:settings}": {\n\t\t\t"title": "${4:Setting}",\n\t\t\t"titles": "${4:Setting}s",\n\t\t\t"multi": true,\n\t\t\t"multi_media": {\n\t\t\t\t"title": "title",\n\t\t\t\t"file": "image"\n\t\t\t},\n\t\t\t"fields": {\n\t\t\t\t"title": {\n\t\t\t\t\t"title": "Title",\n\t\t\t\t\t"type": "title"\n\t\t\t\t},\n\t\t\t\t"image": {\n\t\t\t\t\t"title": "Image",\n\t\t\t\t\t"type": "image_main"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}$5'
+    'Field':
+        'prefix':'field'
+        'body':'"${1:title}": {\n\t
+                "title": "${2:Title}",\n\t
+                "type": "${3:title}"\n
+            },$4'
+'.text.html, .text.html .meta.scope.between-tag-pair, .text.html .punctuation.tag.begin, text.html.php .meta.tag.inline.any.html':
+    'Rnd Hash':
+        'prefix':'rnd'
+        'body':'hFrag.click({${1:settings}:{rnd:Math.floor(Math.random() * 9999)}});${2: return false;}'
+    'Modal Form':
+        'prefix':'modalform'
+        'body':'<form id="formDialog" role="form" action="" method="" onsubmit="return false;">${2:\n\t<div class="xulbox_content_nav dialogDeleteToggle">\n\t\t<div class="xulbox_content_nav_title">\n\t\t\t<b><?php echo $${1:integration}->data[\'title\']; ?></b>\n\t\t</div>\n\t</div>}\n\n\t<div class="xulbox_content_box">\n\t\t<div class="xulbox_content_box_in dialogDeleteToggle">\n\n\t\t\t<div id="formDialogValidate"></div>\n\n\t\t\t$4\n\n\t\t</div>\n\n\n\t\t<div class="alert alert-danger dialogDeleteToggle" style="display: none;">\n\n\t\t\t<div  id="dialogDeleteValidate"></div>\n\n\t\t\t<p>\n\t\t\t\tAre you sure you want to delete this ${1:integration}:\n\t\t\t\t<br>\n\t\t\t\t<b><?php echo $${1:integration}->data[\'title\']; ?></b>\n\t\t\t</p>\n\t\t\t<p>\n\t\t\t\t<button type="button" onclick="this.blur(); hFrag.xAjax(\'\',\'mods/${3:form/${1:integration}s}/action.ajx?action=delete&${1:integration}=<?php echo urlencode(xStdFx::gv(\'${1:integration}\')); ?>\',\'dialogDeleteValidate\');" class="btn btn-danger">Delete</button>\n\t\t\t\t<button type="button" class="btn btn-default" onclick="$(\'.dialogDeleteToggle\').toggle(); xulBoxAuto();">Cancel</button>\n\t\t\t</p>\n\t\t</div>\n\n\n\t</div>\n\t<div class="xulbox_content_nav dialogDeleteToggle">\n\t\t<div class="xulbox_content_nav_toolbar">\n\t\t\t<div>\n\n\t\t\t\t<button\n\t\t\t\t\tonclick="hFrag.xAjax(\'\',\'mods/${3:form/${1:integration}s}/action.ajx?action=update&${1:integration}=<?php echo urlencode(xStdFx::gv(\'${1:integration}\')); ?>\',\'formDialogValidate\',\'formDialog\');"\n\t\t\t\t\ttype="submit"\n\t\t\t\t\tclass="btn btn-primary"\n\t\t\t\t\t>\n\t\t\t\t\t<b>Continue</b>\n\t\t\t\t</button>\n\n\n\t\t\t\t<button class="btn btn-default dialogDeleteToggle " onclick="$(\'.dialogDeleteToggle\').toggle();">\n\t\t\t\t\tDelete\n\t\t\t\t</button>\n\n\n\t\t\t\t<button type="button" onclick="appLb.close();" class="btn btn-default usl-auto-escape">Cancel</button>\n\n\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</form>'
+    'Modal Link':
+        'prefix':'modallink'
+        'body':'<a onclick="appLb.open({location:\'mods/${1:start/modules/edit_settings}.ajx?${2:module}=<?php echo $app->v->${2:module}->id; ?>\'}); return false;" href="#"><input type="button" name="${3:Edit}" value="${3:Edit}" class="btn btn-default"></a>${4:appLb.close();}'
+    'Invalid Repsonse Print':
+            'prefix':'invalid_print'
+            'body':'if (!$response->valid) {\n\txStdFx::printPre($response);\n\texit;\n}$1'
+    'Invalid Response':
+        'prefix': 'invalid'
+        'body':'if (!$response->valid) {\n\t$method->addProbs($response->probs);\n\treturn $method;\n}$1'
+    'Comment Box':
+        'prefix':'cb'
+        'body':'#### -------------------------------------------------------\n#### $1\n#### $2\n#### $3\n#### -------------------------------------------------------$4\n'
+    'Add Problem':
+        'prefix':'prob'
+        'body':'$method->addProb(\'$1\');$2'
+    'Bootstrap Table':
+        'prefix':'table'
+        'body':'<table class="table">\n\t$1\n</table>'
+    'Temporary Code':
+        'prefix':'temp'
+        'body':'#### TEMP: $1 -------------------------------------------------------\n#### END TEMP -------------------------------------------------------\n'
+    'Comment':
+        'prefix':'cm'
+        'body':'#### $1 -------------------------------------------------------'
+    'App Info':
+        'prefix':'appinfo'
+        'body':'xStdFx::printPre($$1app->id);\nxStdFx::printPre($$1app->lite->pageId);\nxStdFx::printPre($$1app->lite->siteId);$2'
+    'xReadyItems':
+        'prefix':'xready'
+        'body':"xReadyItems['${1:uniqueText}'] = function() {\n\t$2\n}"
+    'Else PHP':
+        'prefix':'elsep'
+        'body':'else {$1 ?>\n\t$2\n<?php }'
+    'UL Icon':
+        'prefix':'ulicon'
+        'body':'<i class="ulicon-${1:check} usl-c-${2:good}"></i>'
+    'UL Location':
+        'prefix':'loc'
+        'body':'${2://dev.userlite.com/apps/userlitestoreapps/${1:APPNAME}/v999/lib.htp}\n${3://app-${1:APPNAME}-v999.userlite.com/lib.htp}\n${4://dev.userlite.com/apps/userlitestoreapps/${1:APPNAME}/v999/api.htp}'
+    'Website HTML':
+        'prefix':'webh'
+        'body':'<div class="container usl-pad-md">\n\t<div class="row">\n\t\t{{#first main}}\n\t\t\t<div class="col-sm-12">\n\t\t\t\t{{{content}}}\n\t\t\t</div>\n\t\t{{/first}}\n\t</div>\n\t<div class="row">\n\t\t{{#each ${1:settings}}}\n\t\t\t<div class="col-sm-4">\n\t\t\t\t<h3>{{title}}</h3>\n\t\t\t\t<img src="{{cdnimage image \'maxD_600\'}}" alt="" class="img-responsive" />\n\t\t\t</div>\n\t\t{{/each}}\n\t</div>\n</div>$2'
+    'App Dot':
+        'prefix':'appdot'
+        'body':'<td style="width:1%;">\n\t<?php\n\t\t$color = \'gray\';\n\n\t\tif ($${1:listingItem}[\'${2:state}\'] == 1) {\n\t\t\t$color = \'good\';\n\t\t}\n\n\t\tif ($${1:listingItem}[\'${2:state}\'] == 2) {\n\t\t\t$color = \'warning\';\n\t\t}\n\n\t\tif ($${1:listingItem}[\'${2:state}\'] == 3) {\n\t\t\t$color = \'danger\';\n\t\t}\n\n\t?>\n\t<span class="app-dot usl-bg-<?php echo $color; ?>"></span>\n</td>$3'
+    'App Dot Style':
+        'prefix':'appdotstyle'
+        'body':'.app-dot {\n\tdisplay: inline-block;\n\twidth: 1em;\n\theight: 1em;\n\tborder-radius: 1em;\n\tmargin-top:.15em;\n}'
+    'Script Tag':
+        'prefix':'js'
+        'body':'<script type="text/javascript">\n\n\t$1\n\n</script>'
+    'UL Link Item':
+        'prefix':'ulink'
+        'body':"$links['${1:promotions}'] = [\n\t't'=>'${2:Promotions}',\n];$3"
+    'Form Group':
+        'prefix':'fg'
+        'body': '<div class="form-group">\n\t<label for="fld_${1:title}">${2:Title}</label>\n\t<input type="text" name="fld_${1:title}" value="${3:<?php echo $${4:app->v->${5:item}->rec->data}[\'${1:title}\']; ?>}" class="form-control" />\n</div>$6'
+    'Form Group Textarea':
+        'prefix':'fgt'
+        'body': '<div class="form-group">\n\t<label for="fld_${1:title}">${2:Title}</label>\n\t<textarea name="fld_${1:title}" rows="4" class="form-control">${3:<?php echo $${4:app->v->${5:item}->rec->data}[\'${1:title}\']; ?>}</textarea>\n</div>$6'
+    'Form Group CheckBox':
+        'prefix':'fgc'
+        'body': '<label>\n\t<input ${1:<?php echo ${2:$selected} ? \' checked \' : \'\'; ?> }type="checkbox" name="fld_<?php echo ${3:$fieldKey}; ?>" /> <?php echo ${4:$field[\'title\']}; ?>\n</label>$5'
+    'Form Group Select':
+        'prefix':'fgs'
+        'body': '<div class="form-group">\n\t<label for="fld_${1:terms}">${2:Terms}</label>\n\t<select class="form-control" name="fld_${1:terms}">${3:\n\t\t<option value="${4:0}">Select ${2:terms}...</option>}\n\t\t<?php ${6:\n\t\t\t${5:$options} = [\n\t\t\t\t\'0\'=>[\n\t\t\t\t\t\'title\'=>\'No\',\n\t\t\t\t],\n\t\t\t\t\'1\'=>[\n\t\t\t\t\t\'title\'=>\'Yes\',\n\t\t\t\t],\n\t\t\t];\n\n\t\t\t}foreach (${5:$options} as $${1:terms}Key => $${1:terms}) { ?>\n\t\t\t\t<option ${7:<?php echo $app->v->${8:item}->rec->data[\'${1:terms}\'] == $${1:terms}Key ? \' selected \' : \'\'; ?> }value="<?php echo $${1:terms}Key; ?>"><?php echo $${1:terms}[\'title\']; ?></option>\n\t\t<?php } ?>\n\t</select>\n</div>$9'
+    'Field':
+        'prefix':'field'
+        'body': "$fields['${1:description}'] = array(\n\t'title'=>'${2:Description}',\n\t'req'=>${3:false},\n\t'max'=>${4:255},\n\t'format'=>'$5',\n\t'saveTo'=>array(${6:\n\t\t'sql',}\n\t\t'sdb',\n\t),\n);$7"
+    'Rec Function':
+            'prefix':'fnrec'
+            'body':'####-----------------------------------------------------------\n#### rec\n####-----------------------------------------------------------\n\npublic function rec($pxOptions = array()) {\n\t\n\t$rec = new stdClass();\n\n\t$wheres = [];\n\n\t$wheres[] = " status < 90 ";\n\t$wheres[] = " site = ".$this->app->lite->siteId." ";\n\t$wheres[] = " page = ".$this->app->lite->pageId." ";\n\n\t$wheres[] = " id = ".$this->id." ";\n\n\t$sqlString = "\n\t\tSELECT *\n\t\tFROM ${1:instance_transactions}\n\t\tWHERE ".implode(\' AND \', $wheres)."\n\t\t";\n\n\n\t$rec->data = $this->dbCon->getRow($sqlString);\n\n\treturn $this->gets[\'rec\'] = $rec;\n\t\n}$2'
+    'Form':
+        'prefix':'form'
+        'body':'<form id="${1:formMain}" role="form" action="" method="" onsubmit="return false;">\n\t\n\t$8\n\t\n\t<div class="">\n\t\n\t\t<div id="${1:formMain}Validate"></div>\n\t\t<button onclick="hFrag.xAjax(\'\',\'${2:mods/${3:start}/action.ajx?action=$4}\', \'${5:${1:formMain}Validate}\', \'${1:formMain}\');" type="submit" class="btn btn-primary">\n\t\t\t<b>${6:Save &amp; Continue}</b>\n\t\t</button>${7:\n\t\t\n\t\t<button type="button" onclick="history.go(-1);" class="btn btb-default">Cancel</button>}\n\t\t\n\t</div>\n\t\n</form>'
+    'wheres[]':
+        'prefix':'wheres'
+        'body':'$wheres = [];\n\n$wheres[] = " status < 90 ";\n$wheres[] = " site = ".$this->app->lite->siteId." ";\n$wheres[] = " page = ".$this->app->lite->pageId." ";\nWHERE ".implode(\' AND \', $wheres)."'
+    'Sets[]':
+        'prefix':'sets'
+        'body':'$sets = [];\n\n$sets[] = " status = 1 ";\n$sets[] = " site = ".$this->app->lite->siteId." ";\n$sets[] = " page = ".$this->app->lite->pageId." ";\n$sets[] = " created = \'".$this->app->lite->site->nowDts."\' ";\n$sets[] = " created_gmt = \'".xStdFx::dts(\'\')."\' ";\n$sets[] = " updated = \'".$this->app->lite->site->nowDts."\' ";\n$sets[] = " updated_gmt = \'".xStdFx::dts(\'\')."\' ";\nSET ".implode(\' , \', $sets)."'
+    '$method->valid':
+        'prefix':'valid'
+        'body':'#### ${1:Validate} ---------------------------------------------\nif ($${2:method}->valid) {\n\n\t$3\n\n}'
+    'Action Step':
+        'prefix':'actionstep'
+        'body':'####----------------------------------------------------------------------------\n#### ${1:update}\n####----------------------------------------------------------------------------\nif ($action==\'${1:update}\') {\n\n\txRepAction(\n\t\t\'${2:module/settings/update}/submit\'\n\t);\n\n\t$response = ${3:$app->v->${4:module}->${1:update}}(xStdFx::fieldsToArray());\n\n\t\if ($response->valid) {\n\n\t\txRepAction(\n\t\t\t\'${2:module/settings/update}/submit\',\n\t\t\t\'${2:module/settings/update}/complete\'\n\t\t);\n\n\t\t?>\n\t\t<div class="alert alert-success">\n\t\t\t<b>Changes saved.</b>\n\t\t</div>\n\t\t<script type="text/javascript">\n\t\t\tusl_alerts_fade();\n\t\t</script>\n\t\t<?php\n\n\t} else {\n\t\techo $response->probsShow();\n\t}\n}$5'
+    'Simple Action Step':
+        'prefix':'simpleaction'
+        'body':'####--------------------------------------------------------------------------------------------------------------------------\n#### ${1:order}\n####--------------------------------------------------------------------------------------------------------------------------\nif ($action==\'${1:order}\') {\n\n\txLogAction(\'${3:recipe/ingredients/sort}\');\n\n\t$app->v->${2:recipe}->${1:order}(xStdFx::gv(\'${4:fld_order}\'));\n\n}$5'
+    'Date Create Database Format':
+        'prefix':'dc'
+        'body':"date_create(${1:$app->lite->site->nowDts})->format('${2:Y-m-d}')$3"
+    'Date Create Visual Format':
+        'prefix':'dcf'
+        'body':"date_create(${1:$app->lite->site->nowDts})->format('${2:m/d/Y}')$3"
+    'Date Modify':
+        'prefix':'dcm'
+        'body':"date_create(${1:$app->lite->site->nowDts})->modify('${2:+1 days}')->format('${3:Y-m-d}')$4"
+    'Money Format Number':
+        'prefix':'money-format-number'
+        'body': "'$'.number_format(${1:$product['price']}, ${2:0})$3"
+    'PHP Function':
+        'prefix':'fn'
+        'body': '####-----------------------------------------------------------\n#### ${1:enumerate}\n#### NOTE: ${2:comments}\n####-----------------------------------------------------------\n\npublic function ${1:enumerate}($3$pxOptions = array()) {\n\n\t${4:#Code}\n\n}'
+    'Standard UL Function':
+        'prefix':'xs'
+        'body': 'xStdFx::${1:printPre}(${2:$sqlString})${3:;}$4'
+    'PrintPre with Comment':
+        'prefix':'xsp'
+        'body': 'xStdFx::printPre([\'${1:comment}\', ${2:$sqlString}]);$3'
+    'SQL String':
+        'prefix':'sql'
+        'body': '$sqlString = "\n\t${1:SELECT} $2\n\t";'
+    'Query':
+        'prefix':'query'
+        'body': '$this->dbCon->${1:getRowsId}(${2:$sqlString});$3'
