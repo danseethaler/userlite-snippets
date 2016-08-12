@@ -209,6 +209,9 @@
     'Multi-Line PHP':
         'prefix':'pp'
         'body':'<?php\n\t$1\n?>'
+    'Rec Record Identifier':
+        'prefix':'rec'
+        'body':'$this->rec = $this->app->sdb->record(\'${1:user}_\'.$this->id, \'omni\', $this->${1:user}s->format);$2'
     'Inverted PHP Tags':
         'prefix':'hph'
         'body':'?>\n\t$1\n<?php'
