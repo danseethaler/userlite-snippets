@@ -52,7 +52,10 @@
         'body':'<div class="container usl-pad-md">\n\t<div class="row">\n\t\t{{#first main}}\n\t\t\t<div class="col-sm-12">\n\t\t\t\t{{{content}}}\n\t\t\t</div>\n\t\t{{/first}}\n\t</div>\n\t<div class="row">\n\t\t{{#each ${1:settings}}}\n\t\t\t<div class="col-sm-4">\n\t\t\t\t<h3>{{title}}</h3>\n\t\t\t\t<img src="{{cdnimage image \'maxD_600\'}}" alt="" class="img-responsive" />\n\t\t\t</div>\n\t\t{{/each}}\n\t</div>\n</div>$2'
 
 # Logic
-    'Else PHP':
+    'If Close PHP Tags':
+        'prefix':'ifp'
+        'body':'if (${1:condition}) { ?>\n\t$2\n<?php }'
+    'Else Close PHP Tags':
         'prefix':'elsep'
         'body':'else {$1 ?>\n\t$2\n<?php }'
 
