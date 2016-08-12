@@ -16,6 +16,20 @@
 
 '.text.html, .text.html .meta.scope.between-tag-pair, .text.html .punctuation.tag.begin, text.html.php .meta.tag.inline.any.html':
 
+# Security
+    'Check Security':
+        'prefix':'sec'
+        'body': "$app->sbSec->ob->sec${1:Check}('${2:}', '${3:}', '${4:*}')$5"
+    'Userlite Admin Security':
+        'prefix':'sysadmin'
+        'body':'$$1app->lite->user->sbSec->sysadmin$2'
+    'Action Security':
+        'prefix':'secAction'
+        'body':"$app->sbSec->ob->action('${1:settings}');"
+    'Assign Security Page':
+        'prefix':'secAssignPage'
+        'body':"$app->sbSec->ob->page('${1:settings}');"
+
 # Navigation
     'Rnd Hash':
         'prefix':'rnd'
