@@ -97,6 +97,9 @@
     'Form Group CheckBox':
         'prefix':'fgc'
         'body': '<label>\n\t<input ${1:<?php echo ${2:$selected} ? \' checked \' : \'\'; ?> }type="checkbox" name="fld_<?php echo ${3:$fieldKey}; ?>" /> <?php echo ${4:$field[\'title\']}; ?>\n</label>$5'
+    'Form Group Placeholder':
+            'prefix':'fgp'
+            'body':'<div class="form-group">\n\t<input type="text" name="fld_${1:name_first}" value="<?php echo $app->sbUser->rec->data[\'${1:name_first}\']; ?>" class="form-control" placeholder="${2:First Name}" />\n</div>$3'
     'Form Group Select':
         'prefix':'fgs'
         'body': '<div class="form-group">\n\t<label for="fld_${1:terms}">${2:Terms}</label>\n\t<select class="form-control" name="fld_${1:terms}">${3:\n\t\t<option value="${4:0}">Select ${2:terms}...</option>}\n\t\t<?php ${6:\n\t\t\t${5:$options} = [\n\t\t\t\t\'0\'=>[\n\t\t\t\t\t\'title\'=>\'No\',\n\t\t\t\t],\n\t\t\t\t\'1\'=>[\n\t\t\t\t\t\'title\'=>\'Yes\',\n\t\t\t\t],\n\t\t\t];\n\n\t\t\t}foreach (${5:$options} as $${1:terms}Key => $${1:terms}) { ?>\n\t\t\t\t<option ${7:<?php echo $app->v->${8:item}->rec->data[\'${1:terms}\'] == $${1:terms}Key ? \' selected \' : \'\'; ?> }value="<?php echo $${1:terms}Key; ?>"><?php echo $${1:terms}[\'title\']; ?></option>\n\t\t<?php } ?>\n\t</select>\n</div>$9'
@@ -200,3 +203,12 @@
     'UL Location':
         'prefix':'loc'
         'body':'${2://dev.userlite.com/apps/userlitestoreapps/${1:APPNAME}/v999/lib.htp}\n${3://app-${1:APPNAME}-v999.userlite.com/lib.htp}\n${4://dev.userlite.com/apps/userlitestoreapps/${1:APPNAME}/v999/api.htp}'
+    'App Page Name':
+            'prefix':'page_name'
+            'body':'<?php echo $app->lite->pageName; ?>$1'
+    'Multi-Line PHP':
+        'prefix':'pp'
+        'body':'<?php\n\t$1\n?>'
+    'Inverted PHP Tags':
+        'prefix':'hph'
+        'body':'?>\n\t$1\n<?php'
