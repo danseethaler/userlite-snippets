@@ -66,12 +66,20 @@
     'App Dot Style':
         'prefix':'appdotstyle'
         'body':'.app-dot {\n\tdisplay: inline-block;\n\twidth: 1em;\n\theight: 1em;\n\tborder-radius: 1em;\n\tmargin-top:.15em;\n}'
-    'Bootstrap Table':
-        'prefix':'table'
-        'body':'<table class="table">\n\t$1\n</table>'
     'UL Icon':
         'prefix':'ulicon'
         'body':'<i class="ulicon-${1:check} usl-c-${2:good}"></i>'
+
+# Bootstrap/HTML
+    'Small HR':
+        'prefix':'hrs'
+        'body':'<hr class="usl-sm">$1'
+    'Bootstrap Table':
+        'prefix':'table'
+        'body':'<table class="table">\n\t$1\n</table>'
+    'Button':
+        'prefix':'button'
+        'body':'<button name="${1:name}" class="btn btn-${2:default}" onclick="$4">$3</button>'
 
 # Data Structure
     'Field':
