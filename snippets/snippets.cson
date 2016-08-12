@@ -6,10 +6,7 @@
         'body':'{\n\t"groups": {\n\t\t"${1:main}": {\n\t\t\t"title": "${2:Main Content}",\n\t\t\t"titles": "${2:Main Content}s",\n\t\t\t"multi": false,\n\t\t\t"multi_media": {},\n\t\t\t"fields": {\n\t\t\t\t"content": {\n\t\t\t\t\t"title": "${2:Main Content}",\n\t\t\t\t\t"type": "wysiwyg"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t"${3:settings}": {\n\t\t\t"title": "${4:Setting}",\n\t\t\t"titles": "${4:Setting}s",\n\t\t\t"multi": true,\n\t\t\t"multi_media": {\n\t\t\t\t"title": "title",\n\t\t\t\t"file": "image"\n\t\t\t},\n\t\t\t"fields": {\n\t\t\t\t"title": {\n\t\t\t\t\t"title": "Title",\n\t\t\t\t\t"type": "title"\n\t\t\t\t},\n\t\t\t\t"image": {\n\t\t\t\t\t"title": "Image",\n\t\t\t\t\t"type": "image_main"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}$5'
     'Field':
         'prefix':'field'
-        'body':'"${1:title}": {\n\t
-                "title": "${2:Title}",\n\t
-                "type": "${3:title}"\n
-            },$4'
+        'body':'"${1:title}": {\n\t"title": "${2:Title}",\n\t"type": "${3:title}"\n},$4'
     'Website Field Item':
         'prefix':'fitem'
         'body':',\n"${1:title}": {\n\t"title": "${2:Title}",\n\t"type": "${3:text}"\n}$4'
@@ -79,7 +76,10 @@
 # Data Structure
     'Field':
         'prefix':'field'
-        'body': "$fields['${1:description}'] = array(\n\t'title'=>'${2:Description}',\n\t'req'=>${3:false},\n\t'max'=>${4:255},\n\t'format'=>'$5',\n\t'saveTo'=>array(${6:\n\t\t'sql',}\n\t\t'sdb',\n\t),\n);$7"
+        'body': "$fields['${1:description}'] = [\n\t'title'=>'${2:Description}',\n\t'req'=>${3:false},\n\t'max'=>${4:255},\n\t'format'=>'$5',\n\t'saveTo'=>[${6:\n\t\t'sql',}\n\t\t'sdb',\n\t],\n];$7"
+    'Encrypted Field':
+        'prefix':'fieldev'
+        'body':'$fields[\'${1:card_code}\'] = [\n\t\'title\'=>\'${2:Card Code}\',\n\t\'req\'=>${3:false},\n\t\'encrypt\'=>${4:true},\n\t\'encryptSalt\'=>${5:$this->app->lite->site->salt},\n\t\'max\'=>${6:255},\n\t\'format\'=>\'\',\n\t\'saveTo\'=>[\n\t\t\'sdb\',\n\t],\n];$7'
     'Field Type':
         'prefix':'ftype'
         'body':"\n'${1:url}'=>[\n\t'type'=>'data',${2:\n\t'default'=>'${3:0}',}\n],$4"
@@ -98,8 +98,8 @@
         'prefix':'fgc'
         'body': '<label>\n\t<input ${1:<?php echo ${2:$selected} ? \' checked \' : \'\'; ?> }type="checkbox" name="fld_<?php echo ${3:$fieldKey}; ?>" /> <?php echo ${4:$field[\'title\']}; ?>\n</label>$5'
     'Form Group Placeholder':
-            'prefix':'fgp'
-            'body':'<div class="form-group">\n\t<input type="text" name="fld_${1:name_first}" value="<?php echo $app->sbUser->rec->data[\'${1:name_first}\']; ?>" class="form-control" placeholder="${2:First Name}" />\n</div>$3'
+        'prefix':'fgp'
+        'body':'<div class="form-group">\n\t<input type="text" name="fld_${1:name_first}" value="<?php echo $app->v->${2:item}->rec->data[\'${1:name_first}\']; ?>" class="form-control" placeholder="${3:Item Name}" />\n</div>$4'
     'Form Group Select':
         'prefix':'fgs'
         'body': '<div class="form-group">\n\t<label for="fld_${1:terms}">${2:Terms}</label>\n\t<select class="form-control" name="fld_${1:terms}">${3:\n\t\t<option value="${4:0}">Select ${2:terms}...</option>}\n\t\t<?php ${6:\n\t\t\t${5:$options} = [\n\t\t\t\t\'0\'=>[\n\t\t\t\t\t\'title\'=>\'No\',\n\t\t\t\t],\n\t\t\t\t\'1\'=>[\n\t\t\t\t\t\'title\'=>\'Yes\',\n\t\t\t\t],\n\t\t\t];\n\n\t\t\t}foreach (${5:$options} as $${1:terms}Key => $${1:terms}) { ?>\n\t\t\t\t<option ${7:<?php echo $app->v->${8:item}->rec->data[\'${1:terms}\'] == $${1:terms}Key ? \' selected \' : \'\'; ?> }value="<?php echo $${1:terms}Key; ?>"><?php echo $${1:terms}[\'title\']; ?></option>\n\t\t<?php } ?>\n\t</select>\n</div>$9'
@@ -194,6 +194,17 @@
         'body':'#### $1 -------------------------------------------------------'
 
 # Standard Utitlies
+    'Multi-Line PHP':
+        'prefix':'pp'
+        'body':'<?php\n\t$1\n?>'
+    'Inverted PHP Tags':
+        'prefix':'hph'
+        'body':'?>\n\t$1\n<?php'
+
+# Userlite Specific
+    'USL Return Query String':
+        'prefix':'uslqs_return'
+        'body':'window.location = \'/user/login?uslqs_return=\' + encodeURI(\'${1:/shopping/billing}\');$2'
     'Standard UL Function':
         'prefix':'xs'
         'body': 'xStdFx::${1:printPre}(${2:$sqlString})${3:;}$4'
@@ -206,12 +217,6 @@
     'App Page Name':
             'prefix':'page_name'
             'body':'<?php echo $app->lite->pageName; ?>$1'
-    'Multi-Line PHP':
-        'prefix':'pp'
-        'body':'<?php\n\t$1\n?>'
     'Rec Record Identifier':
         'prefix':'rec'
         'body':'$this->rec = $this->app->sdb->record(\'${1:user}_\'.$this->id, \'omni\', $this->${1:user}s->format);$2'
-    'Inverted PHP Tags':
-        'prefix':'hph'
-        'body':'?>\n\t$1\n<?php'
