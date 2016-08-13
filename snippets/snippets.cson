@@ -168,6 +168,9 @@
     'PHP Function':
         'prefix':'fn'
         'body': '####-----------------------------------------------------------\n#### ${1:enumerate}\n#### NOTE: ${2:comments}\n####-----------------------------------------------------------\n\npublic function ${1:enumerate}($3$pxOptions = array()) {\n\n\t${4:#Code}\n\n}'
+    'method':
+        'prefix':'method'
+        'body':'#### Start Method ---------------------------------------------\n$method = new xStdForm();\n$method->return = [\'${1:foundItemToProcess}\'=>${2:0}];\n\nreturn $method;$3\n'
     '$method->valid':
         'prefix':'valid'
         'body':'#### ${1:Validate} ---------------------------------------------\nif ($${2:method}->valid) {\n\n\t$3\n\n}'
@@ -183,6 +186,9 @@
     'Rec Function':
         'prefix':'fnrec'
         'body':'####-----------------------------------------------------------\n#### rec\n####-----------------------------------------------------------\n\npublic function rec($pxOptions = array()) {\n\t\n\t$rec = new stdClass();\n\n\t$wheres = [];\n\n\t$wheres[] = " status < 90 ";\n\t$wheres[] = " site = ".$this->app->lite->siteId." ";\n\t$wheres[] = " page = ".$this->app->lite->pageId." ";\n\n\t$wheres[] = " id = ".$this->id." ";\n\n\t$sqlString = "\n\t\tSELECT *\n\t\tFROM ${1:instance_transactions}\n\t\tWHERE ".implode(\' AND \', $wheres)."\n\t\t";\n\n\n\t$rec->data = $this->dbCon->getRow($sqlString);\n\n\treturn $this->gets[\'rec\'] = $rec;\n\t\n}$2'
+    'For Each':
+        'prefix':'fore'
+        'body':'foreach (${1:$assignedGroups} as $${2:group}Key => $${2:group}) {\n\t$3\n}'
 
 # Comments/Debugging
     'Comment Box':
@@ -226,5 +232,93 @@
             'prefix':'page_name'
             'body':'<?php echo $app->lite->pageName; ?>$1'
     'Rec Record Identifier':
-        'prefix':'rec'
+        'prefix':'rec_record'
         'body':'$this->rec = $this->app->sdb->record(\'${1:user}_\'.$this->id, \'omni\', $this->${1:user}s->format);$2'
+    'Rec Data':
+        'prefix':'rec'
+        'body': '$app->v->$1->rec->data$2'
+    'hashFrag':
+        'prefix':'hfrag'
+        'body': "hFrag.xAjax('', 'mods/$1action.ajx?action=$2', '${3:xRec}', '$4');"
+    'IAX Instance':
+        'prefix':'iax'
+        'body':"// Create a new App Instance\n$iax = new x${1:Cash}App('userlite');\n\n// Manually set the scope\n$iax->lite->scopeSite = $${2:sitePage}['site'];\n$iax->lite->scopePage = $${2:sitePage}['page'];$3"
+    'Trik Index File':
+        'prefix':'trik_index'
+        'body':'<?php\n\n\t#header(\'Access-Control-Allow-Origin: *\');\n\n\t#### Start Time ---------------------------------------------\n\t$timerStart = microtime(true);\n\n\t#### Response ---------------------------------------------\n\t$trikResponse = array(\n\t\t\'status\'=>\'ok\',\n\t\t\'return\'=>30,\n\t\t\'processTime\'=>0,\n\t\t\'statusMessage\'=>\'\',\n\t);\n\n\trequire_once $xPage->sub[1].\'.php\';\n\n\t#### Duration ---------------------------------------------\n\t$duration = microtime(true) - $timerStart;\n\t$trikResponse[\'processTime\'] = intval($duration * 1000);\n\n\n\t#### Return ---------------------------------------------\n\theader(\'Content-type: application/json\');\n\techo json_encode($trikResponse);\n'
+    'Trik Base File':
+        'prefix':'trik_base'
+        'body':"""<?php
+            // https://dev.userlite.com/apps/userlitestoreapps/${1:xrshopping}/v999/${2:healthplan/processMonthlyHealthplans}.htp
+
+            #### Process ---------------------------------------------
+            $response = $app->sbProcess->${3:monthlyHealthPlans}();
+
+            if ($response->valid) {
+            	$trikResponse['status'] = 'ok';
+            	if ($response->return['foundItemToProcess']) {
+            		// header('Refresh: 0;');
+            		$trikResponse['return'] = 5;
+            		$trikResponse['statusMessage'] = 'Found item to process: '.$response->return['foundItemToProcess'].'';
+            	} else {
+            		$trikResponse['return'] = 600;
+            		$trikResponse['statusMessage'] = 'All is well.';
+            	}
+            } else {
+            	$trikResponse['status'] = 'error';
+            	$trikResponse['return'] = 60;
+            	$trikResponse['statusMessage'] = implode('; ', $response->probs);
+            }
+            """
+    'Trik Method':
+        'prefix':'fn_trik'
+        'body':"""####-----------------------------------------------------------
+            #### ${1:updateExpiredDealers}
+            ####-----------------------------------------------------------
+
+            public function ${1:updateExpiredDealers}($pxOptions = array()) {
+
+                #### Start Method ---------------------------------------------
+                $method = new xStdForm();
+
+                #### Find an ${2:dealer} to process ---------------------------------------------
+                if ($method->valid) {
+
+                    $wheres = [];
+
+                    $wheres[] = " status < 90 ";$5
+
+                    $sqlString = "
+                    SELECT id, site, page
+                    FROM ${2:dealer}s
+                    WHERE ".implode(' AND ', $wheres)."
+                    ORDER BY updated ASC
+                    LIMIT 1
+                    ";
+
+                    $${2:dealer} = $this->dbCon->getRow($sqlString);
+
+                }
+
+                #### Update Dealer ---------------------------------------------
+                if ($method->valid) {
+
+                    if ($${2:dealer}) {
+
+                        $iax = new x${4:Sellerz}App('userlite');
+
+                        $iax->lite->scopeSite = $${2:dealer}['site'];
+                        $iax->lite->scopePage = $${2:dealer}['page'];
+
+                        $method->return = ['foundItemToProcess'=>$${2:dealer}['id']];
+
+                        $${2:dealer}Ob = $iax->sb${3:Dealer}s->sb${3:Dealer}($${2:dealer}['id']);
+
+                    }
+
+                }
+
+                return $method;
+
+            }
+            """
