@@ -1,0 +1,4 @@
+'.text.html':
+    'Userlite Menu':
+        'prefix':'ul_menu'
+        'body':'<!-- usl_menu:${1:Head} Menu -->$2'
