@@ -1,0 +1,82 @@
+'.source.js.jsx':
+    'Screen Dimensions':
+            'prefix':'dimensions'
+            'body':'Dimensions,\nvar deviceWidth = Dimensions.get(\'window\').width;\n'
+    'React Image':
+            'prefix':'image'
+            'body':'<Image\n\tstyle={${1:{width: 70, height: 70, backgroundColor: \'#FFF\'}}}\n\tsource={${2:{uri: product.image}}}\n\tresizeMode="${3:contain}"\n/>$4'
+    'React Create Element':
+            'prefix':'ce'
+            'body':'React.createElement(\n\t"${1:div}",\n\t{\n\t\tclassName: \'${2:col-sm-6}\'\n\t},\n\t${3:childNodes}\n)${4:,}'
+    'Reselct Selector':
+        'prefix':'reselect-selector'
+        'body':'// Reselect selector\n\nimport { createSelector } from \'reselect\';\n\nconst ${1:conditions}Selector = state => state.${1:conditions};\nconst ${2:selectedConditions}Selector = state => state.${2:selectedConditions};\n\nconst ${3:result} = (${1:conditions}, ${2:selectedConditions}) => {\n\n\tvar result;\n\n\treturn result;\n\n}\n\nexport default createSelector(\n\t[${1:conditions}Selector, ${2:selectedConditions}Selector],\n\t${3:result}\n);\n\nimport ${3:result} from \'../Selectors/${3:result}\';\n${4:${1:conditions}: ${3:result}(state)} // Add to Connect State object in container'
+    'Action Creator':
+        'prefix':'action-creator'
+        'body':'\nexport function ${1:setCondition}(${2:condition}) {\n\n\treturn {\n\t\ttype: "${3:ADD_CONDITION}",\n\t\t${2:condition}: ${2:condition}.${4:ADD_CONDITION},\n\t};\n\n}\n$5'
+    'Fade In':
+        'prefix':'fadein'
+        'body':'Animated,\nfadeAnim: new Animated.Value(0),\nAnimated.timing(this.state.fadeAnim, {toValue: 1}).start();\n<Animated.View style={[styles.container, {opacity: this.state.fadeAnim}]}>\n</Animated.View>'
+    'Form':
+        'prefix':'form'
+        'body':'import Form from \'react-native-form\'\n<Form ref="form" style={styles.formContainer}>\n\t$1\n</Form>'
+    'Text Input - Form':
+        'prefix':'formfield'
+        'body':'<View style={[styles.formRow]}>\n\t<Text style={[styles.header, masterStyles.bodyText]}>${1:Title}</Text>\n\t<TextInput\n\t\tstyle={[styles.textInput, { height: 100 }]}\n\t\tname="${2:title}"\n\t\ttype="TextInput"\n\t\tmultiline={${3:false}}\n\t\tenablesReturnKeyAutomatically={true}\n\t\treturnKeyType="${4:done, go, next, search, send, none, previous, default, emergency-call, google, join, route, yahoo}"\n\t\tautoCapitalize="${5:none, sentences, words, characters}"\n\t\tautoFocus={false}\n\t\tdefaultValue={this.state.rec.${2:title}.trim()}\n\t\tonSubmitEditing={ event => this._${6:password}.focus()}\n\t\tref={component => this._${2:title} = component}\n\t/>\n</View>$7'
+    'Date Picker Modal':
+            'prefix':'date_picker'
+            'body':'<TouchableOpacity\n\tstyle={{alignSelf: \'stretch\', justifyContent: \'center\'}}\n\tunderlayColor="#C9C9CE"\n\tonPress={() => {this.props.setupModal(\'date\')}}\n\t>\n\t<View style={[styles.formRow, {justifyContent: \'space-between\', alignItems: \'center\', borderBottomWidth: 0, height: 40}]}>\n\t\t<Text style={[masterStyles.heading4, masterStyles.bodyText]}>\n\t\t\tDate\n\t\t</Text>\n\t\t<Text>\n\t\t\t{this.props.state.clientData.formattedDate}\n\t\t</Text>\n\t</View>\n</TouchableOpacity>'
+    'Icon':
+        'prefix':'icon'
+        'body':'import Icon from \'react-native-vector-icons/FontAwesome\';\n<Icon name="${1:check-circle}" size={20} color="#${3:AAA}" />$4'
+    'TouchableHighlight':
+        'prefix':'th'
+        'body':'<TouchableHighlight\n\tstyle={{alignSelf: \'stretch\', justifyContent: \'center\'}}\n\tunderlayColor="#C9C9CE"\n\tonPress={() => {$1}}\n\t>\n\t$2\n</TouchableHighlight>'
+    'Horizontal Rule':
+            'prefix':'hr'
+            'body':'<View style={{\n\t\tmarginVertical: 5,\n\t\tborderColor: \'#CDCDCD\',\n\t\tborderBottomWidth: StyleSheet.hairlineWidth,\n\t}}\n/>$1'
+    'TouchableOpacity':
+        'prefix':'to'
+        'body':'<TouchableOpacity\n\tstyle={{alignSelf: \'stretch\', justifyContent: \'center\'}}\n\tunderlayColor="#C9C9CE"\n\tonPress={() => {$1}}\n\t>\n\t$2\n</TouchableOpacity>'
+    'AlertIOS':
+        'prefix':'alert_ios'
+        'body':'AlertIOS.alert(\n\t\'${1:Title}\',\n\t\'${2:Subtext}\',\n\t[\n\t\t{text: \'${3:Button1Text}\', onPress: () => {console.log(\'Cancelled reset\')}, style: \'cancel\'},\n\t\t{text: \'${4:Button4Text}\', onPress: () => ${5:navigator.props.handler()}, style: \'destructive\'},\n\t],\n);'
+    'JSON.stringify':
+        'prefix':'jstr'
+        'body':'JSON.stringify(${1:response}${2:, null, 4})$3'
+    'Hairline Border':
+        'prefix':'hl'
+        'body':'borderColor: \'#CDCDCD\',\nborderBottomWidth: StyleSheet.hairlineWidth,$1';
+    'React Native Boilerplate':
+        'prefix':'boilerx'
+        'body':"'use strict';\nimport React, { Component } from 'react';\n\nimport {\n\tAppRegistry,\n\tStyleSheet,\n\tText,\n\tView\n} from 'react-native';\n\nclass Root extends Component {\n\trender() {\n\t\treturn <View style={styles.container}>\n\t\t\t<Text style={styles.text}>\n\t\t\t\tWelcome to Simple Plates.\n\t\t\t</Text>\n\t\t</View>\n\t}\n}\n\nmodule.exports = Root;\n\nconst styles = StyleSheet.create({\n\tcontainer: {\n\t\tflex: 1,\n\t\tbackgroundColor: '#FFF',\n\t\tjustifyContent: 'center',\n\t\talignItems: 'center',\n\t\talignSelf: 'stretch',\n\t},\n\ttext: {\n\t\tfontSize: 16,\n\t},\n});"
+    'React Native Boilerplate Legacy':
+        'prefix':'boiler'
+        'body':'\'use strict\';\n\nimport React from \'react\';\n\nimport {\n\tAppRegistry,\n\tStyleSheet,\n\tText,\n\tView\n} from \'react-native\';\n\nimport masterStyles from \'../styles\';\n\nconst ${1:Maps} = React.createClass({\n\n\tgetInitialState: function(){\n\t\treturn {\n\n\t\t};\n\t},\n\n\trender: function() {\n\t\treturn <View style={styles.container}>\n\t\t\t<Text style={masterStyles.heading2}>\n\t\t\t\tPeoples, welcome to ${1:Maps}.\n\t\t\t</Text>\n\t\t</View>\n\t}\n\n});\n\nmodule.exports = ${1:Maps};\n\nconst styles = StyleSheet.create({\n\tcontainer: {\n\t\tflex: 1,\n\t\tbackgroundColor: \'#FFF\',\n\t\tjustifyContent: \'center\',\n\t\talignItems: \'center\',\n\t\talignSelf: \'stretch\',\n\t},\n});$2'
+    'Image Component':
+        'prefix':'ic'
+        'body':"<Image\n\tstyle={styles.${1:logo}}\n\tsource={{uri: '${2:http://facebook.github.io/react/img/logo_og.png}'}}\n\tsource={require('${3:./myIcon.png}')}\n/>$4"
+    'Image Styling Defaults':
+        'prefix':'imagecss'
+        'body':"image: {\n\tflex: ${1:1},\n\tbackgroundColor: '${2:transparent}', // color\n\tborderColor: '${3:blue}', // color\n\tborderRadius: ${4:5}, // number\n\tborderWidth: ${5:2}, // number\n\topacity: ${6:.8}, // number\n\toverflow: '${7:hidden}', // enum('visible', 'hidden')\n\tresizeMode: '${8:contain}', // Object.keys(ImageResizeMode)\n\twidth: ${9:null}, // number\n\theight: ${10:null}, // number\n},"
+    'Require':
+        'prefix':'rq'
+        'body':"var ${1:Listings} = require('${3:../Screens/${2:Listings}}');$4"
+    'Flex CSS':
+        'prefix':'flexcss'
+        'body':"flex: ${1:1},\nflexDirection: '${2:row}',\njustifyContent: '${3:center}',\nalignItems: '${4:center}',\nalignSelf: '${5:stretch}',$6"
+    'View Component':
+        'prefix':'view'
+        'body':'<View style={style.$1}$2>\n\t$3\n</View>$4'
+    'Border Helper Function':
+        'prefix':'borderf'
+        'body':'border: function(color){\n\treturn {\n\t\tborderWidth: 1,\n\t\tborderColor: color,\n\t};\n},'
+    'Text':
+        'prefix':'text'
+        'body':'<Text style={${1:[masterStyles.bodyText$2]}}>\n\t$3\n</Text>'
+    'ListView':
+            'prefix':'lv'
+            'body':'ListView,\nconst ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});\n<ListView\n\tcontentContainerStyle={{\n\t\tflex: 1,\n\t\talignSelf: \'stretch\',\n\t}}\n\tenableEmptySections={true}\n\tdataSource={ds.cloneWithRows(this.props.state.${1:items})}\n\trenderRow={this.renderRow}\n/>$2'
+    'React-Redux Connect':
+        'prefix':'connect'
+        'body':"import { connect } from 'react-redux';\nimport { bindActionCreators } from 'redux';\nimport { ${1:setCondition} } from '../Actions/${2:UserActions}';\n\nfunction mapDispatchToProps(dispatch) {\n\treturn bindActionCreators({\n\t\t${1:setCondition},\n\t}, dispatch);\n}\n\nmodule.exports = connect(state => ({\n\tstate,\n}),\nmapDispatchToProps\n)(${3:Conditions});$4"
