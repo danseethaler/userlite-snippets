@@ -1,0 +1,12 @@
+'.source.json':
+
+# Slices
+    'Website JSON':
+        'prefix':'webj'
+        'body':'{\n\t"groups": {\n\t\t"${1:main}": {\n\t\t\t"title": "${2:Main Content}",\n\t\t\t"titles": "${2:Main Content}s",\n\t\t\t"multi": false,\n\t\t\t"multi_media": {},\n\t\t\t"fields": {\n\t\t\t\t"content": {\n\t\t\t\t\t"title": "${2:Main Content}",\n\t\t\t\t\t"type": "wysiwyg"\n\t\t\t\t}\n\t\t\t}\n\t\t},\n\t\t"${3:settings}": {\n\t\t\t"title": "${4:Setting}",\n\t\t\t"titles": "${4:Setting}s",\n\t\t\t"multi": true,\n\t\t\t"multi_media": {\n\t\t\t\t"title": "title",\n\t\t\t\t"file": "image"\n\t\t\t},\n\t\t\t"fields": {\n\t\t\t\t"title": {\n\t\t\t\t\t"title": "Title",\n\t\t\t\t\t"type": "title"\n\t\t\t\t},\n\t\t\t\t"image": {\n\t\t\t\t\t"title": "Image",\n\t\t\t\t\t"type": "image_main"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}$5'
+    'Field':
+        'prefix':'field'
+        'body':'"${1:title}": {\n\t"title": "${2:Title}",\n\t"type": "${3:title}"\n},$4'
+    'Website Field Item':
+        'prefix':'fitem'
+        'body':',\n"${1:title}": {\n\t"title": "${2:Title}",\n\t"type": "${3:text}"\n}$4'
