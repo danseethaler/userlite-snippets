@@ -176,6 +176,18 @@
     'For Each':
         'prefix':'fore'
         'body':'foreach (${1:$assignedGroups} as $${2:group}Key => $${2:group}) {\n\t$3\n}'
+    'For Each HTML':
+        'prefix':'forp'
+        'body':'foreach (${1:$assignedGroups} as $${2:group}Key => $${2:group}) { $3?>\n\t$4\n<?php }'
+    'xPage':
+        'prefix':'xpage'
+        'body': "$xPage->hashFrag('${1:document}','${2:documentid}')"
+    'pxOptions isset':
+        'prefix':'pxcheck'
+        'body':"if (isset($pxOptions['${1:merchant}'])) {\n\t$wheres[] = \" ${1:${2:merchant}} = \".intval($pxOptions['${1:merchant}']).\" \";\n}$3"
+    'Validate Input':
+        'prefix':'validate-input'
+        'body':"$method->validateInput('${1:Title}', ${2:$value}, ${3:required}, '${4:formatType}', ${5:maxLength});"
 
 # Comments/Debugging
     'Comment Box':
@@ -190,9 +202,12 @@
     'Temporary Code':
         'prefix':'temp'
         'body':'#### TEMP: $1 -------------------------------------------------------\n#### END TEMP -------------------------------------------------------\n'
-    'Comment':
+    'Comment Line':
         'prefix':'cm'
         'body':'#### $1 -------------------------------------------------------'
+    'Comment':
+        'prefix':'c'
+        'body':'#### '
 
 # Standard Utitlies
     'Multi-Line PHP':

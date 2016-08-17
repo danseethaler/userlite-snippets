@@ -6,21 +6,5 @@
         "command": "userlite-snippets:toggle"
       }
     ]
-  },
-  "menu": [
-    {
-      "label": "Packages",
-      "submenu": [
-        {
-          "label": "userlite-snippets",
-          "submenu": [
-            {
-              "label": "Toggle",
-              "command": "userlite-snippets:toggle"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+  }
 }
