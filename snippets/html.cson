@@ -2,3 +2,9 @@
     'Userlite Menu':
         'prefix':'ul_menu'
         'body':'<!-- usl_menu:${1:Head} Menu -->$2'
+    'Preview Span':
+        'prefix':'previewspanlink'
+        'body':'<span class="hf_auto" onclick="$2 return false;">\n\t<span class="scTitle">${1:Preview}</span>\n</span>$3'
+    'Image Background CSS':
+        'prefix':'imagecss'
+        'body':'background-image:url(\'<?php echo $app->lite->cdnImage(\'_bw/user.png\', \'maxD_100\'); ?>\');\nbackground-size:contain;\nbackground-repeat:no-repeat;\nbackground-position:center center;'

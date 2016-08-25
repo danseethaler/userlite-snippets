@@ -21,6 +21,18 @@
     'UL Link Item':
         'prefix':'ulink'
         'body':"$links['${1:promotions}'] = [\n\t't'=>'${2:Promotions}',\n];$3"
+    'Start Navigation':
+        'prefix':'nav-start'
+        'body':'<div class="xHeadNav">\n\t<div class="container">\n\t\t<div class="xHeadRight">\n\t\t\t<a title="App Settings" onclick="<?php echo $xPage->hfLink(\'mod::p:settings|n:app\', \'click\', [\'only\' => 1]); ?>; return false;" href="#"><i class="ulicon-settings"></i></a> &nbsp;\n\t\t\t<a title="We need your feedback for this app!" href="/concerto/ent/<?php echo $app->id; ?>"><i class="ulicon-message"></i></a>\n\t\t</div>\n\t <div class="xHeadTitle">\n\t\t\t<span class="xHeadBreadcrumb app-title">\n\t<?php echo $app->instance->rec->data[\'title\']; ?>\n\t\t\t</span>\n\t\t</div>\n\t\t<div class="xHeadTabs">\n\t\t\t<div class="xHeadTabsLeft">\n\t\t\t\t<?php\n\n\t$links = array();\n\n\t$links[\'${1:template_items}\'] = [\n\t\t\t\t\t\'t\' => \'${2:Template Items}\',\n\t];\n\n\t$app->sbNav->links(\n\t\tarray(\n\t\t\t\'name\' => \'${3:start}\',\n\t\t\t\'mod\' => \'${3:start}\',\n\t\t\t\'links\' => $links,\n\t\t)\n\t);\n\t?>\n \n\t\t\t</div>\n\t\t</div>\n\t</div>\n </div>\n \n<?php\n$app->sbNav->sec(array(\n\t\'name\'=>\'${3:start}\',\n\t\'click\'=>\'${3:start}::n:${3:start}|p:\'.key($links),\n));$4'
+    'Sub Navigation Tabs':
+        'prefix':'navtabs'
+        'body':'<div class="xToolbar">\n\t<div class="container">\n\t\t<div class="xToolbarIn">\n\t\t\t<div class="xToolbarMenu">\n\n\t\t\t\t<?php\n\n\t\t\t\t$links = array();\n\n\t\t\t\t$links[\'${1:training}\'] = [\n\t\t\t\t\t\'t\'=>\'${2:Training}\',\n\t\t\t\t];\n\n\t\t\t\t$app->sbNav->links(\n\t\t\t\t\tarray(\n\t\t\t\t\t\t\'name\'=>\'${4:settings}\',\n\t\t\t\t\t\t\'mod\'=>\'${3:employee}\',\n\t\t\t\t\t\t\'links\'=>$links,\n\t\t\t\t\t)\n\t\t\t\t);\n\t\t\t\t?>\n\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n<?php\n\n$app->sbNav->sec([\n\t\'name\'=>\'${4:settings}\',\n\t\'effect\'=>true,\n\t\'click\'=>\'${4:settings}::n:${3:employee}|p:\'.key($links),\n]);\n$5'
+    'Vars Add':
+        'prefix':'vars add'
+        'body':"'varsadd'=>'|${1:t}:|${2:month}:'"
+    'Reload Button':
+        'prefix':'reloadb'
+        'body':'<b><input type="button" name="reload" value="Reload" class="btn btn-danger btn-sm" onclick="hFrag.click({${1:settings}:{rnd:Math.floor(Math.random() * 9999)}});" style="z-index: 12313145; position:fixed; top:30px; right: 10px;"></b>$2'
 
 # Modals
     'Modal Form':
@@ -67,6 +79,18 @@
     'Button':
         'prefix':'button'
         'body':'<button name="${1:name}" class="btn btn-${2:default}" onclick="$4">$3</button>'
+    'Container with Row':
+        'prefix':'container'
+        'body':"""<div class="container usl-pad-md">
+            ${1:<div class="row">
+                <div class="col-sm-${2:6}">
+                    $3
+                </div>
+            </div>}
+        </div>"""
+    'Table Header':
+        'prefix':'th'
+        'body':'<th>\n\t$1\n</th>$2'
 
 # Data Structure
     'Field':
@@ -242,6 +266,9 @@
     'hashFrag':
         'prefix':'hfrag'
         'body': "hFrag.xAjax('', 'mods/$1action.ajx?action=$2', '${3:xRec}', '$4');"
+    'inc':
+        'prefix':'inc'
+        'body':'####------------------------------------------------------------\n#### ${1:category}\n####------------------------------------------------------------\nif ($xPage->hashFrag(\'${3:${1:category}}\',\'${1:category}id\')) {\n\n\t$app->v->${1:merchant} = $app->sb${2:Merchant}s->sb${2:Merchant}($xPage->hashFrag(\'${3:${1:category}}\',\'${1:category}id\'));\n\n}$4'
     'IAX Instance':
         'prefix':'iax'
         'body':"// Create a new App Instance\n$iax = new x${1:Cash}App('userlite');\n\n// Manually set the scope\n$iax->lite->scopeSite = $${2:sitePage}['site'];\n$iax->lite->scopePage = $${2:sitePage}['page'];$3"
@@ -324,3 +351,18 @@
 
             }
             """
+    'Tiny Sort':
+        'prefix':'tinysort'
+        'body':"var curSort = 'asc';\n\nfunction sortCols(pxBy) {\n\n\ttinysort('tr.dataRow', {\n\t\tselector: pxBy,\n\t\torder: curSort\n\t});\n\n\tif (curSort == 'asc') {\n\t\tcurSort = 'desc';\n\t} else {\n\t\tcurSort = 'asc';\n\t}\n}${1: onclick=\"sortCols('.category');\"}"
+    'Activity':
+        'prefix':'activity'
+        'body':"####----------------------------------------------------------------------------\n#### activity\n####----------------------------------------------------------------------------\n\npublic function activity($pxOptions = array()) {\n\n\treturn $this->app->lite->site->sbActivities->sbActivity(\n\t\t[\n\t\t\t'page'=>$this->app->lite->pageId,\n\t\t\t'app'=>$this->app->id,\n\t\t\t'name'=>'${1:action}',\n\t\t\t'id'=>$this->id,\n\t\t]\n\n\t);\n\n}$2"
+    'Notebook':
+        'prefix':'notebook'
+        'body':"####----------------------------------------------------------------------------\n#### notebook\n####----------------------------------------------------------------------------\n\npublic function notebook($pxOptions = array()) {\n\n\treturn $this->app->lite->site->sbNotebooks->sbNotebook(\n\t\t$this->app->lite->pageId,\n\t\t$this->app->lite->appId,\n\t\t'main',\n\t\t'${1:document}',\n\t\t$this->id,\n\t\t$this->rec->data['title'],\n\t\t[\n\t\t\t'parent'=>$this,\n\t\t\t'syncfields'=>[\n\t\t\t\t'title'=>$this->rec->data['title'],\n\t\t\t\t'hfrag'=>'${2:hashFrag}${3:'.$this->id.'}',\n\t\t\t\t'sec_name'=>'${4:${5:app}}',\n\t\t\t\t'sec_id'=>'${4:${6:full}}',\n\t\t\t\t'sec_action'=>'${4:${7:manage}}',\n\t\t\t],\n\t\t]\n\t);\n\n}$8"
+    'Notebook Activity':
+        'prefix':'notebookactivity'
+        'body':"####----------------------------------------------------------------------------\n#### notebookActivity\n####----------------------------------------------------------------------------\n\npublic function notebookActivity($pxOptions = array()) {\n\n\treturn $this->app->lite->sbNotebooks->sbOb(\n\t\t$this->notebook,\n\t\t[\n\t\t\t'go'=>'${1:client/goal_activity}',\n\t\t],\n\t\t[\n\t\t\t'xlog_name_prefix'=>'activity',\n\t\t\t'xlog_title_prefix'=>'Activity',\n\t\t]\n\t);\n\n}$2"
+    'Notebook Entry':
+        'prefix':'entry'
+        'body':"$entryOptions =   [\n\t'type'=>1,\n\t'user'=>${1:$results['user']},\n\t'comment'=>${2:$this->rec->data['title'].' document signed by '.$this->user->displayName},\n\t'uid'=>'${3:xAppObjectName}_'.${4:$this->id.'_user_'.$this->user->id}.'_initial',\n\t'activity_name'=>$this->${5:parent}->activity->ref['name'],\n\t'activity_id'=>$this->${5:parent}->activity->ref['id'],\n\t'importance'=>5,\n];\n\n$this->app->lite->site->sbUsers->sbUser($results['user'])->contactNotebook->sbEntries->create(\n\t$entryOptions\n);$6"
