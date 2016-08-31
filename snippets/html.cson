@@ -8,18 +8,18 @@
     'Image Background CSS':
         'prefix':'imagecss'
         'body':'background-image:url(\'<?php echo $app->lite->cdnImage(\'_bw/user.png\', \'maxD_100\'); ?>\');\nbackground-size:contain;\nbackground-repeat:no-repeat;\nbackground-position:center center;'
-    'Delete Confirmation Toggle':
-        'prefix':'delete_toggle'
-        'body':"""<div class="alert alert-danger deleteToggle" id="deleteValidate" style="display: none;">
-                <p>
-                    <b>Are you sure you want to delete this ${1:lesson}?</b>
-                </p>
-                <p>
-                    <button type="button" onclick="this.blur(); hFrag.xAjax('','mods/${1:lesson}/action.ajx?action=delete','deleteValidate');" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-default" onclick="$('.deleteToggle').toggle();">Cancel</button>
-                </p>
-            </div>
+    'Confirmation Toggle':
+        'prefix':'confirm_toggle'
+        'body':"""<div class="alert alert-danger ${1:delete}Toggle" id="${1:delete}Validate" style="display: none;">
+            <p>
+                <b>Are you sure you want to ${1:delete} this ${2:lesson}?</b>
+            </p>
+            <p>
+                <button type="button" onclick="this.blur(); hFrag.xAjax('','mods/${2:lesson}/action.ajx?action=${1:delete}','${1:delete}Validate');" class="btn btn-danger">${3:Delete}</button>
+                <button type="button" class="btn btn-default" onclick="$('.${1:delete}Toggle').toggle();">Cancel</button>
+            </p>
+        </div>
 
-            ${2:<button class="btn btn-default deleteToggle " onclick="$('.deleteToggle').toggle();">
-                Delete
-            </button>}$3"""
+        <button class="btn btn-default ${1:delete}Toggle " onclick="$('.${1:delete}Toggle').toggle();">
+            ${3:Delete}
+        </button>$4"""
