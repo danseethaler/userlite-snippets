@@ -173,7 +173,7 @@
 # Formats
     'Money Format Number':
         'prefix':'money-format-number'
-        'body': "'$'.number_format(${1:$product['price']}, ${2:0})$3"
+        'body': "'$'.number_format(${1:$product['price']}, ${2:2})$3"
 
 # Functions and Methods
     'PHP Function':
@@ -232,6 +232,9 @@
     'Comment':
         'prefix':'c'
         'body':'#### '
+    'PHP Console Log':
+        'prefix':'log'
+        'body':'?>\n\t<script type="text/javascript">\n\t\tconsole.log(JSON.stringify(<?php echo json_encode(${1:array_values(${2:$reminders})}); ?>, null, 4));\n\t</script>\n<?php$3'
 
 # Standard Utitlies
     'Multi-Line PHP':
@@ -366,3 +369,9 @@
     'Notebook Entry':
         'prefix':'entry'
         'body':"$entryOptions =   [\n\t'type'=>1,\n\t'user'=>${1:$results['user']},\n\t'comment'=>${2:$this->rec->data['title'].' document signed by '.$this->user->displayName},\n\t'uid'=>'${3:xAppObjectName}_'.${4:$this->id.'_user_'.$this->user->id}.'_initial',\n\t'activity_name'=>$this->${5:parent}->activity->ref['name'],\n\t'activity_id'=>$this->${5:parent}->activity->ref['id'],\n\t'importance'=>5,\n];\n\n$this->app->lite->site->sbUsers->sbUser($results['user'])->contactNotebook->sbEntries->create(\n\t$entryOptions\n);$6"
+    'Notebook Page':
+        'prefix':'notebook_page'
+        'body':'echo $app->v->${1:merchant}->notebookActivity->page();$2'
+    'Activity Go':
+        'prefix':'activity_go'
+        'body':'echo $app->v->${1:merchant}->notebookActivity->go();$2'

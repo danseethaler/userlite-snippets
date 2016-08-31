@@ -1,7 +1,7 @@
 '.source.js':
     'hFrag Ajax URL':
-            'prefix':'ajax_url'
-            'body':'hFrag.xAjaxURL(\'${1:mods/language_lesson/action.ajx?action=config}\')$2'
+        'prefix':'ajax_url'
+        'body':'hFrag.xAjaxURL(\'${1:mods/language_lesson/action.ajx?action=config}\')$2'
     'Console Log':
         'prefix':'log'
         'body':'console.log(${1:stateUpdate});$2'
