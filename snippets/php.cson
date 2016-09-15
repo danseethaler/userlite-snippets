@@ -174,11 +174,17 @@
     'Money Format Number':
         'prefix':'money-format-number'
         'body': "'$'.number_format(${1:$product['price']}, ${2:2})$3"
+    'Replace Spaces':
+        'prefix':'replace_spaces'
+        'body':"str_replace('${1: }', '${2:&nbsp;}', ${3:$user['name_first'].' '.$user['name_last']})"
 
 # Functions and Methods
     'PHP Function':
         'prefix':'fn'
         'body': '####-----------------------------------------------------------\n#### ${1:enumerate}\n#### NOTE: ${2:comments}\n####-----------------------------------------------------------\n\npublic function ${1:enumerate}($3$pxOptions = array()) {\n\n\t${4:#Code}\n\n}'
+    'Set User in ini':
+        'prefix':'user_ini'
+        'body':'$1public function ini($pxMe, $pxUser = false) {\n\n\tif ($pxUser) {\n\t\t$this->user = $this->app->lite->site->sbUsers->sbUser($pxUser);\n\t}else {\n\t\t$this->user = $this->app->lite->user;\n\t}$2'
     'method':
         'prefix':'method'
         'body':'#### Start Method ---------------------------------------------\n$method = new xStdForm();\n$method->return = [\'${1:foundItemToProcess}\'=>${2:0}];\n\nreturn $method;$3\n'
@@ -220,9 +226,14 @@
     'PrintPre with Comment':
         'prefix':'xsp'
         'body': 'xStdFx::printPre([\'${1:comment}\', ${2:$sqlString}]);$3'
-    'App Info':
-        'prefix':'appinfo'
-        'body':'xStdFx::printPre($$1app->id);\nxStdFx::printPre($$1app->lite->pageId);\nxStdFx::printPre($$1app->lite->siteId);$2'
+    'Current State':
+        'prefix':'current_state'
+        'body':"""xStdFx::printPre([
+            'app_id'=>$app->id,
+            'page_id'=>$app->lite->pageId,
+            'site_id'=>$app->lite->siteId,
+            'user_id'=>$app->lite->user->id,
+        ]);"""
     'Temporary Code':
         'prefix':'temp'
         'body':'#### TEMP: $1 -------------------------------------------------------\n#### END TEMP -------------------------------------------------------\n'
@@ -245,6 +256,9 @@
         'body':'?>\n\t$1\n<?php'
 
 # Userlite Specific
+    'App Info':
+        'prefix':'appinfo'
+        'body':'xStdFx::printPre($$1app->id);\nxStdFx::printPre($$1app->lite->pageId);\nxStdFx::printPre($$1app->lite->siteId);$2'
     'USL Return Query String':
         'prefix':'uslqs_return'
         'body':'window.location = \'/user/login?uslqs_return=\' + encodeURI(\'${1:/shopping/billing}\');$2'
@@ -375,3 +389,12 @@
     'Activity Go':
         'prefix':'activity_go'
         'body':'echo $app->v->${1:merchant}->notebookActivity->go();$2'
+    'Email Body':
+        'prefix':'bod'
+        'body':"$body .= '${1:Message} ${2:<br>}<br>';$3";
+    'Send Email':
+        'prefix':'email'
+        'body':'\n\t$body = \'<div style="@box; @backWhite; @font; @sec;">\';\n\t$body .= \'<div style="@box; @backWhite; @font; @secIn;">\';\n\t$body .= ${1:\'Hey \'.$user[\'name\'].\',\'};\n\t$body .= \'<br><br>\';\n\t$2\n\t$body .= \'</div>\';\n\t$body .= \'</div>\';\n\n\t$emailArray = [\n\t\t\'to\'=>${3:$user[\'email\']},\n\t\t\'subject\'=>$4,\n\t\t\'bodyHtml\'=>$body,\n\t\t\'bcc\'=>[\'${5:something}@cnxmsg.com\'],\n\t];\n\n\t$response = $this->app->lite->site->mx->send($emailArray);\n\n\tif (!$response->valid) {\n\t\t$method->addProbs($response->probs);\n\t\treturn $method;\n\t}$6'
+    'CDN Image':
+        'prefix':'cdnimage'
+        'body':"echo $app->lite->cdnImage(${1:'_bw/user.png'}, '${2:maxD_100}');$3"

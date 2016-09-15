@@ -1,13 +1,36 @@
 '.text.html':
+
+# Navigation
     'Userlite Menu':
         'prefix':'ul_menu'
         'body':'<!-- usl_menu:${1:Head} Menu -->$2'
     'Preview Span':
         'prefix':'previewspanlink'
         'body':'<span class="hf_auto" onclick="$2 return false;">\n\t<span class="scTitle">${1:Preview}</span>\n</span>$3'
+    'Nav Title with X':
+        'prefix':'nav_title_x'
+        'body':"""<div class="container">
+            	<div class="xPageMast">
+            		<a onclick="hFrag.click({${2:language}:{p:'${1:lesson}s',${1:lesson}id:''}}); return false;" class="xPageMastClose ulicon-x" href="#"></a>
+            		<div class="xPageMastTitle "><?php echo $app->v->${1:lesson}->rec->data['title']; ?></div>
+            	</div>
+            </div>$3"""
+
+# CSS
     'Image Background CSS':
         'prefix':'imagecss'
         'body':'background-image:url(\'<?php echo $app->lite->cdnImage(\'_bw/user.png\', \'maxD_100\'); ?>\');\nbackground-size:contain;\nbackground-repeat:no-repeat;\nbackground-position:center center;'
+    'Flex Column':
+        'prefix':'flex_column'
+        'body':""".${1:container} {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .${1:container}>${2:div} {
+            	width: ${3:33.3}%;
+            }$4"""
+
+# Utilities
     'Confirmation Toggle':
         'prefix':'confirm_toggle'
         'body':"""<div class="alert alert-danger ${1:delete}Toggle" id="${1:delete}Validate" style="display: none;">
@@ -23,3 +46,8 @@
         <button class="btn btn-default ${1:delete}Toggle " onclick="$('.${1:delete}Toggle').toggle();">
             ${3:Delete}
         </button>$4"""
+
+# Charts
+    'USL Bar':
+        'prefix':'bar'
+        'body':'<td style="width:${1:150}px;">\n\t<span class="usl-bar usl-bar-long">\n\t\t<span class="usl-bar-in usl-bg-${6:good}" style="<?php echo \'width: \'.$${2:completed}Perc.\'%;\'; ?>"> </span>\n\t\t<span class="usl-bar-in usl-bg-${5:positive}" style="<?php echo \'width: \'.$${3:accepted}Perc.\'%;\'; ?>"> </span>\n\t\t<span class="usl-bar-in usl-bg-${7:danger}" style="<?php echo \'width: \'.$${4:skipped}Perc.\'%;\'; ?>"> </span>\n\t</span>\n</td>'

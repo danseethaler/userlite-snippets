@@ -20,6 +20,33 @@
     'Ajax Search':
         'prefix':'db_search'
         'body':'var searchField = $(\'#${1:search_field_id}\');\n\nsearchField.focus();\n\nvar search = {\n\texecute: function() {\n\t\tif (!this.isUpdating && this.queue.length > 0) {\n\t\t\t\n\t\t\tthis.isUpdating = true;\n\t\t\tvar term = this.queue.pop();\n\t\t\tthis.queue = [];\n\n\t\t\thFrag.xAjax(\'\', \'${3:mods}/${2:results_div_id}.ajx?filter=\' + term, \'${4:dictionary_results}\');\n\n\t\t}\n\t},\n\tqueue: [],\n\tisUpdating: false,\n};\n\nsearchField.on(\'keyup\', function(event) {\n\n\tvar term = jQuery(this).val().toLowerCase();\n\n\tif (term.length > 1) {\n\t\tsearch.queue.push(term);\n\t\tsearch.execute();\n\t}\n\n});\n\n${5:search.isUpdating = false;\nsearch.execute();\n}$6'
+    'Ajax Queue Form':
+        'prefix':'queue_form'
+        'body':"""var inputFields = $('${1:.various_input, .field_selectors}');
+
+            var search = {
+            	needsUpdate: false,
+            	isUpdating: false,
+            	execute: function(){
+            		updateConfig.needsUpdate = true;
+            		updateConfig.checkAndLaunch();
+            	},
+            	checkAndLaunch: function() {
+            		if (!this.isUpdating && this.needsUpdate) {
+
+            			this.isUpdating = true;
+            			this.needsUpdate = false;
+
+            			hFrag.xAjax('', 'mods/${3:start/sessions}/${2:search_results}.ajx', '${2:search_results}', '${4:form_id}');
+
+            		}
+            	},
+            };
+
+            inputFields.on('keyup', search.execute);
+
+            ${5:search.queue.push('');
+            search.execute();}"""
     'Tiny Sort':
         'prefix':'tinysort'
         'body':"var curSort = 'asc';\n\nfunction sortCols(pxBy) {\n\n\ttinysort('tr.dataRow', {\n\t\tselector: pxBy,\n\t\torder: curSort\n\t});\n\n\tif (curSort == 'asc') {\n\t\tcurSort = 'desc';\n\t} else {\n\t\tcurSort = 'asc';\n\t}\n}${1: onclick=\"sortCols('.category');\"}"
