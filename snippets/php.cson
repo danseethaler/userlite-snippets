@@ -150,6 +150,9 @@
     'JOIN SQL':
         'prefix':'join'
         'body':'JOIN ${1:table_name}\nON ${1:table_name}.$2 = ${3:table_2}.$2$4'
+    'DB Escape':
+        'prefix':'esc'
+        'body':'$this->dbCon->esc($1)$2'
 
 # Action Steps
     'Action Step':
@@ -181,7 +184,7 @@
 # Functions and Methods
     'PHP Function':
         'prefix':'fn'
-        'body': '####-----------------------------------------------------------\n#### ${1:enumerate}\n#### NOTE: ${2:comments}\n####-----------------------------------------------------------\n\npublic function ${1:enumerate}($3$pxOptions = array()) {\n\n\t${4:#Code}\n\n}'
+        'body': '####------------------------------------------------------------------------\n#### ${1:enumerate}\n#### NOTE: ${2:comments}\n####------------------------------------------------------------------------\n\npublic function ${1:enumerate}($3$pxOptions = array()) {\n\n\t${4:#Code}\n\n}'
     'Set User in ini':
         'prefix':'user_ini'
         'body':'$1public function ini($pxMe, $pxUser = false) {\n\n\tif ($pxUser) {\n\t\t$this->user = $this->app->lite->site->sbUsers->sbUser($pxUser);\n\t}else {\n\t\t$this->user = $this->app->lite->user;\n\t}$2'
@@ -202,13 +205,40 @@
         'body':'if (!$response->valid) {\n\t$method->addProbs($response->probs);\n\treturn $method;\n}$1'
     'Rec Function':
         'prefix':'fnrec'
-        'body':'####-----------------------------------------------------------\n#### rec\n####-----------------------------------------------------------\n\npublic function rec($pxOptions = array()) {\n\t\n\t$rec = new stdClass();\n\n\t$wheres = [];\n\n\t$wheres[] = " status < 90 ";\n\t$wheres[] = " site = ".$this->app->lite->siteId." ";\n\t$wheres[] = " page = ".$this->app->lite->pageId." ";\n\n\t$wheres[] = " id = ".$this->id." ";\n\n\t$sqlString = "\n\t\tSELECT *\n\t\tFROM ${1:instance_transactions}\n\t\tWHERE ".implode(\' AND \', $wheres)."\n\t\t";\n\n\n\t$rec->data = $this->dbCon->getRow($sqlString);\n\n\treturn $this->gets[\'rec\'] = $rec;\n\t\n}$2'
+        'body':'####------------------------------------------------------------------------\n#### rec\n####------------------------------------------------------------------------\n\npublic function rec($pxOptions = array()) {\n\t\n\t$rec = new stdClass();\n\n\t$wheres = [];\n\n\t$wheres[] = " status < 90 ";\n\t$wheres[] = " site = ".$this->app->lite->siteId." ";\n\t$wheres[] = " page = ".$this->app->lite->pageId." ";\n\n\t$wheres[] = " id = ".$this->id." ";\n\n\t$sqlString = "\n\t\tSELECT *\n\t\tFROM ${1:instance_transactions}\n\t\tWHERE ".implode(\' AND \', $wheres)."\n\t\t";\n\n\n\t$rec->data = $this->dbCon->getRow($sqlString);\n\n\treturn $this->gets[\'rec\'] = $rec;\n\t\n}$2'
+    'Replace Old Rec Function':
+        'prefix':'fnrec_replace_old'
+        'body':"""####-----------------------------------------------------------
+            #### rec
+            #### Add the sdbOld and scopeStringOld to App file
+            #### remove the $this->rec from the ini and the `public $rec = false;`
+            #### from this file
+            ####-----------------------------------------------------------
+
+            public function rec($pxOptions = array()) {
+
+                $newRec = $this->app->sdb->record('${1:language_lesson_}'.$this->id, 'omni', $this->${2:lessons}->format);
+
+                if (!$newRec->data['title']) {
+                    $oldRec = $this->app->sdbOld->record('${1:language_lesson_}'.$this->id, 'omni', $this->${2:lessons}->format);
+
+
+                    if ($oldRec->data['title']) {
+                        $newRec->data = $oldRec->data;
+                        $newRec->save();
+                    }
+                }
+
+                return $this->gets['rec'] = $newRec;
+
+            }$3
+            """
     'For Each':
         'prefix':'fore'
-        'body':'foreach (${1:$assignedGroups} as $${2:group}Key => $${2:group}) {\n\t$3\n}'
+        'body':'foreach (${1:$assignedGroups} as $${2:group}) {\n\t$3\n}'
     'For Each HTML':
         'prefix':'forp'
-        'body':'foreach (${1:$assignedGroups} as $${2:group}Key => $${2:group}) { $3?>\n\t$4\n<?php }'
+        'body':'foreach (${1:$assignedGroups} as $${2:group}) { $3?>\n\t$4\n<?php }'
     'xPage':
         'prefix':'xpage'
         'body': "$xPage->hashFrag('${1:document}','${2:documentid}')"
@@ -247,13 +277,18 @@
         'prefix':'log'
         'body':'?>\n\t<script type="text/javascript">\n\t\tconsole.log(JSON.stringify(<?php echo json_encode(${1:array_values(${2:$reminders})}); ?>, null, 4));\n\t</script>\n<?php$3'
 
-# Standard Utitlies
+# Standard Utilities
     'Multi-Line PHP':
         'prefix':'pp'
         'body':'<?php\n\t$1\n?>'
     'Inverted PHP Tags':
         'prefix':'hph'
         'body':'?>\n\t$1\n<?php'
+    'Timeout Return':
+        'prefix':'timeout'
+        'body':"""if ((time() - $_SERVER['REQUEST_TIME']) > 30) {
+            ${1:$this->finishRequest();}
+        }$2"""
 
 # Userlite Specific
     'App Info':

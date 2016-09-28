@@ -19,7 +19,7 @@
         'body':'var inputFields = $(\'${1:.various_input, .field_selectors}\');\n\nvar update = {\n\texecute: function() {\n\t\tif (!this.isUpdating && this.queue.length > 0) {\n\t\t\t\n\t\t\tthis.isUpdating = true;\n\t\t\tvar term = this.queue.pop();\n\t\t\tthis.queue = [];\n\n\t\t\thFrag.xAjax(\'\', \'${3:mods}/${2:results_div_id}.ajx?action=update\', \'xRec\', \'${4:formMain}\');\n\n\t\t}\n\t},\n\tqueue: [],\n\tisUpdating: false,\n};\n\ninputFields.on(\'keyup\', function(event) {\n\n\tvar term = jQuery(this).val().toLowerCase();\n\tupdate.queue.push(term);\n\tupdate.execute();\n\n});\n\n${5:update.isUpdating = false;\nupdate.execute();\n}$6'
     'Ajax Search':
         'prefix':'db_search'
-        'body':'var searchField = $(\'#${1:search_field_id}\');\n\nsearchField.focus();\n\nvar search = {\n\texecute: function() {\n\t\tif (!this.isUpdating && this.queue.length > 0) {\n\t\t\t\n\t\t\tthis.isUpdating = true;\n\t\t\tvar term = this.queue.pop();\n\t\t\tthis.queue = [];\n\n\t\t\thFrag.xAjax(\'\', \'${3:mods}/${2:results_div_id}.ajx?filter=\' + term, \'${4:dictionary_results}\');\n\n\t\t}\n\t},\n\tqueue: [],\n\tisUpdating: false,\n};\n\nsearchField.on(\'keyup\', function(event) {\n\n\tvar term = jQuery(this).val().toLowerCase();\n\n\tif (term.length > 1) {\n\t\tsearch.queue.push(term);\n\t\tsearch.execute();\n\t}\n\n});\n\n${5:search.isUpdating = false;\nsearch.execute();\n}$6'
+        'body':'var searchField = $(\'#${1:search_field_id}\');\n\nsearchField.focus();\n\nvar search = {\n\texecute: function() {\n\t\tif (!this.isUpdating && this.queue.length > 0) {\n\t\t\t\n\t\t\tthis.isUpdating = true;\n\t\t\tvar term = this.queue.pop();\n\t\t\tthis.queue = [];\n\n\t\t\thFrag.xAjax(\'\', \'${3:mods}/${2:results_div_id}.ajx?filter=\' + encodeURIComponent(term), \'${4:dictionary_results}\');\n\n\t\t}\n\t},\n\tqueue: [],\n\tisUpdating: false,\n};\n\nsearchField.on(\'keyup\', function(event) {\n\n\tvar term = jQuery(this).val().toLowerCase();\n\n\tif (term.length > 1) {\n\t\tsearch.queue.push(term);\n\t\tsearch.execute();\n\t}\n\n});\n\n${5:search.isUpdating = false;\nsearch.execute();\n}$6'
     'Ajax Queue Form':
         'prefix':'queue_form'
         'body':"""var inputFields = $('${1:.various_input, .field_selectors}');
@@ -37,7 +37,7 @@
             			this.isUpdating = true;
             			this.needsUpdate = false;
 
-            			hFrag.xAjax('', 'mods/${3:start/sessions}/${2:search_results}.ajx', '${2:search_results}', '${4:form_id}');
+            			hFrag.xAjax('', 'mods/${3:start/sessions}/${2:search_results}.ajx', '${2:search_results}', '${4:formMain}');
 
             		}
             	},
