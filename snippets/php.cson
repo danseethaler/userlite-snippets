@@ -184,10 +184,10 @@
 # Functions and Methods
     'PHP Function':
         'prefix':'fn'
-        'body': '####------------------------------------------------------------------------\n#### ${1:enumerate}\n#### NOTE: ${2:comments}\n####------------------------------------------------------------------------\n\npublic function ${1:enumerate}($3$pxOptions = array()) {\n\n\t${4:#Code}\n\n}'
+        'body': '####------------------------------------------------------------------------\n#### ${1:enumerate}\n#### NOTE: ${2:comments}\n####------------------------------------------------------------------------\n\npublic function ${1:enumerate}($3$pxOptions = array()) {\n\n\t${4:return $this->gets[\'${1:enumerate}\'] = $${1:enumerate};}\n\n}'
     'Set User in ini':
         'prefix':'user_ini'
-        'body':'$1public function ini($pxMe, $pxUser = false) {\n\n\tif ($pxUser) {\n\t\t$this->user = $this->app->lite->site->sbUsers->sbUser($pxUser);\n\t}else {\n\t\t$this->user = $this->app->lite->user;\n\t}$2'
+        'body':'$1public function ini($pxMe, $pxUser = false) {\n\n\tif ($pxUser) {\n\t\t$this->id = intval($pxUser);\n\t\t$this->ob = $this->app->lite->site->sbUsers->sbUser($pxUser);\n\t} else {\n\t\t$this->id = $this->app->lite->user->id;\n\t\t$this->ob = $this->app->lite->user;\n\t}$2'
     'method':
         'prefix':'method'
         'body':'#### Start Method ---------------------------------------------\n$method = new xStdForm();\n$method->return = [\'${1:foundItemToProcess}\'=>${2:0}];\n\nreturn $method;$3\n'
@@ -276,6 +276,9 @@
     'PHP Console Log':
         'prefix':'log'
         'body':'?>\n\t<script type="text/javascript">\n\t\tconsole.log(JSON.stringify(<?php echo json_encode(${1:array_values(${2:$reminders})}); ?>, null, 4));\n\t</script>\n<?php$3'
+    'Break Comment':
+        'prefix':'xsb'
+        'body':'xStdFx::printPre(\'---------------------------------\');$1'
 
 # Standard Utilities
     'Multi-Line PHP':
@@ -293,13 +296,21 @@
 # Userlite Specific
     'App Info':
         'prefix':'appinfo'
-        'body':'xStdFx::printPre($$1app->id);\nxStdFx::printPre($$1app->lite->pageId);\nxStdFx::printPre($$1app->lite->siteId);$2'
+        'body':"""xStdFx::printPre([
+            'app_id'=>$$1app->id,
+            'page_id'=>$$1app->lite->pageId,
+            'site_id'=>$$1app->lite->siteId,
+            'user_id'=>$$1app->lite->user->id,
+        ]);$2"""
     'USL Return Query String':
         'prefix':'uslqs_return'
         'body':'window.location = \'/user/login?uslqs_return=\' + encodeURI(\'${1:/shopping/billing}\');$2'
     'Standard UL Function':
         'prefix':'xs'
         'body': 'xStdFx::${1:printPre}(${2:$sqlString})${3:;}$4'
+    'PrintPre Exit':
+        'prefix':'xx'
+        'body': 'xStdFx::printPre(${1:$sqlString});\nexit;$2'
     'xReadyItems':
         'prefix':'xready'
         'body':"xReadyItems['${1:uniqueText}'] = function() {\n\t$2\n}"
@@ -433,3 +444,9 @@
     'CDN Image':
         'prefix':'cdnimage'
         'body':"echo $app->lite->cdnImage(${1:'_bw/user.png'}, '${2:maxD_100}');$3"
+    'Get Cache':
+        'prefix':'cache_get'
+        'body':"$cName = '${1:xCashAppUsersUser}_v1_'.${2:$this->id}.'_${3:account_access}';\n$${4:accounts} = $this->app->lite->site->point->get($cName);$5"
+    'Set Cache':
+        'prefix':'cache_set'
+        'body':"$cName = '${1:xCashAppUsersUser}_v1_'.${2:$this->id}.'_${3:account_access}';\n$this->app->lite->site->point->set($cName, $accounts);$4"
