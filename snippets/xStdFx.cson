@@ -1,317 +1,316 @@
 '.text.html, .text.html .meta.scope.between-tag-pair, .text.html .punctuation.tag.begin, text.html.php .meta.tag.inline.any.html':
-
-'xStdFx dbEsc':
-    'prefix':'xStdFx_dbEsc'
-    'body':'xStdFx::dbEsc($1);$2'
-'xStdFx safeCharsCheck':
-    'prefix':'xStdFx_safeCharsCheck'
-    'body':'xStdFx::safeCharsCheck($1);$2'
-'xStdFx safeChars':
-    'prefix':'xStdFx_safeChars'
-    'body':'xStdFx::safeChars($1);$2'
-'xStdFx hMatch':
-    'prefix':'xStdFx_hMatch'
-    'body':'xStdFx::hMatch($1);$2'
-'xStdFx hashMatch':
-    'prefix':'xStdFx_hashMatch'
-    'body':'xStdFx::hashMatch($1);$2'
-'xStdFx def':
-    'prefix':'xStdFx_def'
-    'body':'xStdFx::def($1);$2'
-'xStdFx pingPage':
-    'prefix':'xStdFx_pingPage'
-    'body':'xStdFx::pingPage($1);$2'
-'xStdFx stripEmails':
-    'prefix':'xStdFx_stripEmails'
-    'body':'xStdFx::stripEmails($1);$2'
-'xStdFx stripUrls':
-    'prefix':'xStdFx_stripUrls'
-    'body':'xStdFx::stripUrls($1);$2'
-'xStdFx getPage':
-    'prefix':'xStdFx_getPage'
-    'body':'xStdFx::getPage($1);$2'
-'xStdFx getPageInTime':
-    'prefix':'xStdFx_getPageInTime'
-    'body':'xStdFx::getPageInTime($1);$2'
-'xStdFx getPageOptions':
-    'prefix':'xStdFx_getPageOptions'
-    'body':'xStdFx::getPageOptions($1);$2'
-'xStdFx getHeader':
-    'prefix':'xStdFx_getHeader'
-    'body':'xStdFx::getHeader($1);$2'
-'xStdFx getFinal':
-    'prefix':'xStdFx_getFinal'
-    'body':'xStdFx::getFinal($1);$2'
-'xStdFx arrayImplode':
-    'prefix':'xStdFx_arrayImplode'
-    'body':'xStdFx::arrayImplode($1);$2'
-'xStdFx getSize':
-    'prefix':'xStdFx_getSize'
-    'body':'xStdFx::getSize($1);$2'
-'xStdFx jsonEncode':
-    'prefix':'xStdFx_jsonEncode'
-    'body':'xStdFx::jsonEncode($1);$2'
-'xStdFx utf8ize':
-    'prefix':'xStdFx_utf8ize'
-    'body':'xStdFx::utf8ize($1);$2'
-'xStdFx maskChars':
-    'prefix':'xStdFx_maskChars'
-    'body':'xStdFx::maskChars($1);$2'
-'xStdFx arrayMergeRecursiveDistinct':
-    'prefix':'xStdFx_arrayMergeRecursiveDistinct'
-    'body':'xStdFx::arrayMergeRecursiveDistinct($1);$2'
-'xStdFx checkPage':
-    'prefix':'xStdFx_checkPage'
-    'body':'xStdFx::checkPage($1);$2'
-'xStdFx zip':
-    'prefix':'xStdFx_zip'
-    'body':'xStdFx::zip($1);$2'
-'xStdFx arraySort':
-    'prefix':'xStdFx_arraySort'
-    'body':'xStdFx::arraySort($1);$2'
-'xStdFx flags':
-    'prefix':'xStdFx_flags'
-    'body':'xStdFx::flags($1);$2'
-'xStdFx isMd5':
-    'prefix':'xStdFx_isMd5'
-    'body':'xStdFx::isMd5($1);$2'
-'xStdFx fieldsToArray':
-    'prefix':'xStdFx_fieldsToArray'
-    'body':'xStdFx::fieldsToArray($1);$2'
-'xStdFx xmlentitydecode':
-    'prefix':'xStdFx_xmlentitydecode'
-    'body':'xStdFx::xmlentitydecode($1);$2'
-'xStdFx xmlentities':
-    'prefix':'xStdFx_xmlentities'
-    'body':'xStdFx::xmlentities($1);$2'
-'xStdFx postXML':
-    'prefix':'xStdFx_postXML'
-    'body':'xStdFx::postXML($1);$2'
-'xStdFx postJson':
-    'prefix':'xStdFx_postJson'
-    'body':'xStdFx::postJson($1);$2'
-'xStdFx htmlspecialcharsDecodeRecursive':
-    'prefix':'xStdFx_htmlspecialcharsDecodeRecursive'
-    'body':'xStdFx::htmlspecialcharsDecodeRecursive($1);$2'
-'xStdFx postFields':
-    'prefix':'xStdFx_postFields'
-    'body':'xStdFx::postFields($1);$2'
-'xStdFx formatTags':
-    'prefix':'xStdFx_formatTags'
-    'body':'xStdFx::formatTags($1);$2'
-'xStdFx datesThrough':
-    'prefix':'xStdFx_datesThrough'
-    'body':'xStdFx::datesThrough($1);$2'
-'xStdFx checkMatch':
-    'prefix':'xStdFx_checkMatch'
-    'body':'xStdFx::checkMatch($1);$2'
-'xStdFx wrapTag':
-    'prefix':'xStdFx_wrapTag'
-    'body':'xStdFx::wrapTag($1);$2'
-'xStdFx nl2p':
-    'prefix':'xStdFx_nl2p'
-    'body':'xStdFx::nl2p($1);$2'
-'xStdFx nl2ps':
-    'prefix':'xStdFx_nl2ps'
-    'body':'xStdFx::nl2ps($1);$2'
-'xStdFx isSecIp':
-    'prefix':'xStdFx_isSecIp'
-    'body':'xStdFx::isSecIp($1);$2'
-'xStdFx printPre':
-    'prefix':'xStdFx_printPre'
-    'body':'xStdFx::printPre($1);$2'
-'xStdFx arrayColumnSort':
-    'prefix':'xStdFx_arrayColumnSort'
-    'body':'xStdFx::arrayColumnSort($1);$2'
-'xStdFx startsWith':
-    'prefix':'xStdFx_startsWith'
-    'body':'xStdFx::startsWith($1);$2'
-'xStdFx endsWith':
-    'prefix':'xStdFx_endsWith'
-    'body':'xStdFx::endsWith($1);$2'
-'xStdFx showPre':
-    'prefix':'xStdFx_showPre'
-    'body':'xStdFx::showPre($1);$2'
-'xStdFx arrayFirst':
-    'prefix':'xStdFx_arrayFirst'
-    'body':'xStdFx::arrayFirst($1);$2'
-'xStdFx returnPre':
-    'prefix':'xStdFx_returnPre'
-    'body':'xStdFx::returnPre($1);$2'
-'xStdFx arrayFixBlank':
-    'prefix':'xStdFx_arrayFixBlank'
-    'body':'xStdFx::arrayFixBlank($1);$2'
-'xStdFx outPre':
-    'prefix':'xStdFx_outPre'
-    'body':'xStdFx::outPre($1);$2'
-'xStdFx cipherEncrypt':
-    'prefix':'xStdFx_cipherEncrypt'
-    'body':'xStdFx::cipherEncrypt($1);$2'
-'xStdFx decodeEntities':
-    'prefix':'xStdFx_decodeEntities'
-    'body':'xStdFx::decodeEntities($1);$2'
-'xStdFx cipherDecrypt':
-    'prefix':'xStdFx_cipherDecrypt'
-    'body':'xStdFx::cipherDecrypt($1);$2'
-'xStdFx gv':
-    'prefix':'xStdFx_gv'
-    'body':'xStdFx::gv($1);$2'
-'xStdFx userSubmittedClean':
-    'prefix':'xStdFx_userSubmittedClean'
-    'body':'xStdFx::userSubmittedClean($1);$2'
-'xStdFx pv':
-    'prefix':'xStdFx_pv'
-    'body':'xStdFx::pv($1);$2'
-'xStdFx compareVars':
-    'prefix':'xStdFx_compareVars'
-    'body':'xStdFx::compareVars($1);$2'
-'xStdFx ev':
-    'prefix':'xStdFx_ev'
-    'body':'xStdFx::ev($1);$2'
-'xStdFx dv':
-    'prefix':'xStdFx_dv'
-    'body':'xStdFx::dv($1);$2'
-'xStdFx eq':
-    'prefix':'xStdFx_eq'
-    'body':'xStdFx::eq($1);$2'
-'xStdFx dq':
-    'prefix':'xStdFx_dq'
-    'body':'xStdFx::dq($1);$2'
-'xStdFx partsCheck':
-    'prefix':'xStdFx_partsCheck'
-    'body':'xStdFx::partsCheck($1);$2'
-'xStdFx nbs':
-    'prefix':'xStdFx_nbs'
-    'body':'xStdFx::nbs($1);$2'
-'xStdFx firstDayOfWeek':
-    'prefix':'xStdFx_firstDayOfWeek'
-    'body':'xStdFx::firstDayOfWeek($1);$2'
-'xStdFx ajaxLoad':
-    'prefix':'xStdFx_ajaxLoad'
-    'body':'xStdFx::ajaxLoad($1);$2'
-'xStdFx secNumDec':
-    'prefix':'xStdFx_secNumDec'
-    'body':'xStdFx::secNumDec($1);$2'
-'xStdFx sdq':
-    'prefix':'xStdFx_sdq'
-    'body':'xStdFx::sdq($1);$2'
-'xStdFx removePrefix':
-    'prefix':'xStdFx_removePrefix'
-    'body':'xStdFx::removePrefix($1);$2'
-'xStdFx secNumEnc':
-    'prefix':'xStdFx_secNumEnc'
-    'body':'xStdFx::secNumEnc($1);$2'
-'xStdFx seq':
-    'prefix':'xStdFx_seq'
-    'body':'xStdFx::seq($1);$2'
-'xStdFx nameToArray':
-    'prefix':'xStdFx_nameToArray'
-    'body':'xStdFx::nameToArray($1);$2'
-'xStdFx trk':
-    'prefix':'xStdFx_trk'
-    'body':'xStdFx::trk($1);$2'
-'xStdFx ajaxRedirect':
-    'prefix':'xStdFx_ajaxRedirect'
-    'body':'xStdFx::ajaxRedirect($1);$2'
-'xStdFx baseRedirect':
-    'prefix':'xStdFx_baseRedirect'
-    'body':'xStdFx::baseRedirect($1);$2'
-'xStdFx smartRedirect':
-    'prefix':'xStdFx_smartRedirect'
-    'body':'xStdFx::smartRedirect($1);$2'
-'xStdFx arraySuperMerge':
-    'prefix':'xStdFx_arraySuperMerge'
-    'body':'xStdFx::arraySuperMerge($1);$2'
-'xStdFx roundNumberBig':
-    'prefix':'xStdFx_roundNumberBig'
-    'body':'xStdFx::roundNumberBig($1);$2'
-'xStdFx formatNumberAbv':
-    'prefix':'xStdFx_formatNumberAbv'
-    'body':'xStdFx::formatNumberAbv($1);$2'
-'xStdFx randSec':
-    'prefix':'xStdFx_randSec'
-    'body':'xStdFx::randSec($1);$2'
-'xStdFx randKey':
-    'prefix':'xStdFx_randKey'
-    'body':'xStdFx::randKey($1);$2'
-'xStdFx randSid':
-    'prefix':'xStdFx_randSid'
-    'body':'xStdFx::randSid($1);$2'
-'xStdFx timeRound':
-    'prefix':'xStdFx_timeRound'
-    'body':'xStdFx::timeRound($1);$2'
-'xStdFx urlExists':
-    'prefix':'xStdFx_urlExists'
-    'body':'xStdFx::urlExists($1);$2'
-'xStdFx ntl':
-    'prefix':'xStdFx_ntl'
-    'body':'xStdFx::ntl($1);$2'
-'xStdFx brackToComma':
-    'prefix':'xStdFx_brackToComma'
-    'body':'xStdFx::brackToComma($1);$2'
-'xStdFx jFixStr':
-    'prefix':'xStdFx_jFixStr'
-    'body':'xStdFx::jFixStr($1);$2'
-'xStdFx attFixStr':
-    'prefix':'xStdFx_attFixStr'
-    'body':'xStdFx::attFixStr($1);$2'
-'xStdFx sort2d':
-    'prefix':'xStdFx_sort2d'
-    'body':'xStdFx::sort2d($1);$2'
-'xStdFx mSort':
-    'prefix':'xStdFx_mSort'
-    'body':'xStdFx::mSort($1);$2'
-'xStdFx dts':
-    'prefix':'xStdFx_dts'
-    'body':'xStdFx::dts($1);$2'
-'xStdFx numberToDate':
-    'prefix':'xStdFx_numberToDate'
-    'body':'xStdFx::numberToDate($1);$2'
-'xStdFx formatDateTime':
-    'prefix':'xStdFx_formatDateTime'
-    'body':'xStdFx::formatDateTime($1);$2'
-'xStdFx dtsAgo':
-    'prefix':'xStdFx_dtsAgo'
-    'body':'xStdFx::dtsAgo($1);$2'
-'xStdFx secondsAgo':
-    'prefix':'xStdFx_secondsAgo'
-    'body':'xStdFx::secondsAgo($1);$2'
-'xStdFx formatDateDiff':
-    'prefix':'xStdFx_formatDateDiff'
-    'body':'xStdFx::formatDateDiff($1);$2'
-'xStdFx formatSigDec':
-    'prefix':'xStdFx_formatSigDec'
-    'body':'xStdFx::formatSigDec($1);$2'
-'xStdFx isFormat':
-    'prefix':'xStdFx_isFormat'
-    'body':'xStdFx::isFormat($1);$2'
-'xStdFx creditCardType':
-    'prefix':'xStdFx_creditCardType'
-    'body':'xStdFx::creditCardType($1);$2'
-'xStdFx possessive':
-    'prefix':'xStdFx_possessive'
-    'body':'xStdFx::possessive($1);$2'
-'xStdFx countS':
-    'prefix':'xStdFx_countS'
-    'body':'xStdFx::countS($1);$2'
-'xStdFx editVars':
-    'prefix':'xStdFx_editVars'
-    'body':'xStdFx::editVars($1);$2'
-'xStdFx hashCmd':
-    'prefix':'xStdFx_hashCmd'
-    'body':'xStdFx::hashCmd($1);$2'
-'xStdFx qsArray':
-    'prefix':'xStdFx_qsArray'
-    'body':'xStdFx::qsArray($1);$2'
-'xStdFx arrayQs':
-    'prefix':'xStdFx_arrayQs'
-    'body':'xStdFx::arrayQs($1);$2'
-'xStdFx arrayQsVar':
-    'prefix':'xStdFx_arrayQsVar'
-    'body':'xStdFx::arrayQsVar($1);$2'
-'xStdFx wordLimit':
-    'prefix':'xStdFx_wordLimit'
-    'body':'xStdFx::wordLimit($1);$2'
-'xStdFx charLimit':
-    'prefix':'xStdFx_charLimit'
-    'body':'xStdFx::charLimit($1);$2'
+    'xStdFx dbEsc':
+        'prefix':'xStdFx_dbEsc'
+        'body':'xStdFx::dbEsc($1);$2'
+    'xStdFx safeCharsCheck':
+        'prefix':'xStdFx_safeCharsCheck'
+        'body':'xStdFx::safeCharsCheck($1);$2'
+    'xStdFx safeChars':
+        'prefix':'xStdFx_safeChars'
+        'body':'xStdFx::safeChars($1);$2'
+    'xStdFx hMatch':
+        'prefix':'xStdFx_hMatch'
+        'body':'xStdFx::hMatch($1);$2'
+    'xStdFx hashMatch':
+        'prefix':'xStdFx_hashMatch'
+        'body':'xStdFx::hashMatch($1);$2'
+    'xStdFx def':
+        'prefix':'xStdFx_def'
+        'body':'xStdFx::def($1);$2'
+    'xStdFx pingPage':
+        'prefix':'xStdFx_pingPage'
+        'body':'xStdFx::pingPage($1);$2'
+    'xStdFx stripEmails':
+        'prefix':'xStdFx_stripEmails'
+        'body':'xStdFx::stripEmails($1);$2'
+    'xStdFx stripUrls':
+        'prefix':'xStdFx_stripUrls'
+        'body':'xStdFx::stripUrls($1);$2'
+    'xStdFx getPage':
+        'prefix':'xStdFx_getPage'
+        'body':'xStdFx::getPage($1);$2'
+    'xStdFx getPageInTime':
+        'prefix':'xStdFx_getPageInTime'
+        'body':'xStdFx::getPageInTime($1);$2'
+    'xStdFx getPageOptions':
+        'prefix':'xStdFx_getPageOptions'
+        'body':'xStdFx::getPageOptions($1);$2'
+    'xStdFx getHeader':
+        'prefix':'xStdFx_getHeader'
+        'body':'xStdFx::getHeader($1);$2'
+    'xStdFx getFinal':
+        'prefix':'xStdFx_getFinal'
+        'body':'xStdFx::getFinal($1);$2'
+    'xStdFx arrayImplode':
+        'prefix':'xStdFx_arrayImplode'
+        'body':'xStdFx::arrayImplode($1);$2'
+    'xStdFx getSize':
+        'prefix':'xStdFx_getSize'
+        'body':'xStdFx::getSize($1);$2'
+    'xStdFx jsonEncode':
+        'prefix':'xStdFx_jsonEncode'
+        'body':'xStdFx::jsonEncode($1);$2'
+    'xStdFx utf8ize':
+        'prefix':'xStdFx_utf8ize'
+        'body':'xStdFx::utf8ize($1);$2'
+    'xStdFx maskChars':
+        'prefix':'xStdFx_maskChars'
+        'body':'xStdFx::maskChars($1);$2'
+    'xStdFx arrayMergeRecursiveDistinct':
+        'prefix':'xStdFx_arrayMergeRecursiveDistinct'
+        'body':'xStdFx::arrayMergeRecursiveDistinct($1);$2'
+    'xStdFx checkPage':
+        'prefix':'xStdFx_checkPage'
+        'body':'xStdFx::checkPage($1);$2'
+    'xStdFx zip':
+        'prefix':'xStdFx_zip'
+        'body':'xStdFx::zip($1);$2'
+    'xStdFx arraySort':
+        'prefix':'xStdFx_arraySort'
+        'body':'xStdFx::arraySort($1);$2'
+    'xStdFx flags':
+        'prefix':'xStdFx_flags'
+        'body':'xStdFx::flags($1);$2'
+    'xStdFx isMd5':
+        'prefix':'xStdFx_isMd5'
+        'body':'xStdFx::isMd5($1);$2'
+    'xStdFx fieldsToArray':
+        'prefix':'xStdFx_fieldsToArray'
+        'body':'xStdFx::fieldsToArray($1);$2'
+    'xStdFx xmlentitydecode':
+        'prefix':'xStdFx_xmlentitydecode'
+        'body':'xStdFx::xmlentitydecode($1);$2'
+    'xStdFx xmlentities':
+        'prefix':'xStdFx_xmlentities'
+        'body':'xStdFx::xmlentities($1);$2'
+    'xStdFx postXML':
+        'prefix':'xStdFx_postXML'
+        'body':'xStdFx::postXML($1);$2'
+    'xStdFx postJson':
+        'prefix':'xStdFx_postJson'
+        'body':'xStdFx::postJson($1);$2'
+    'xStdFx htmlspecialcharsDecodeRecursive':
+        'prefix':'xStdFx_htmlspecialcharsDecodeRecursive'
+        'body':'xStdFx::htmlspecialcharsDecodeRecursive($1);$2'
+    'xStdFx postFields':
+        'prefix':'xStdFx_postFields'
+        'body':'xStdFx::postFields($1);$2'
+    'xStdFx formatTags':
+        'prefix':'xStdFx_formatTags'
+        'body':'xStdFx::formatTags($1);$2'
+    'xStdFx datesThrough':
+        'prefix':'xStdFx_datesThrough'
+        'body':'xStdFx::datesThrough($1);$2'
+    'xStdFx checkMatch':
+        'prefix':'xStdFx_checkMatch'
+        'body':'xStdFx::checkMatch($1);$2'
+    'xStdFx wrapTag':
+        'prefix':'xStdFx_wrapTag'
+        'body':'xStdFx::wrapTag($1);$2'
+    'xStdFx nl2p':
+        'prefix':'xStdFx_nl2p'
+        'body':'xStdFx::nl2p($1);$2'
+    'xStdFx nl2ps':
+        'prefix':'xStdFx_nl2ps'
+        'body':'xStdFx::nl2ps($1);$2'
+    'xStdFx isSecIp':
+        'prefix':'xStdFx_isSecIp'
+        'body':'xStdFx::isSecIp($1);$2'
+    'xStdFx printPre':
+        'prefix':'xStdFx_printPre'
+        'body':'xStdFx::printPre($1);$2'
+    'xStdFx arrayColumnSort':
+        'prefix':'xStdFx_arrayColumnSort'
+        'body':'xStdFx::arrayColumnSort($1);$2'
+    'xStdFx startsWith':
+        'prefix':'xStdFx_startsWith'
+        'body':'xStdFx::startsWith($1);$2'
+    'xStdFx endsWith':
+        'prefix':'xStdFx_endsWith'
+        'body':'xStdFx::endsWith($1);$2'
+    'xStdFx showPre':
+        'prefix':'xStdFx_showPre'
+        'body':'xStdFx::showPre($1);$2'
+    'xStdFx arrayFirst':
+        'prefix':'xStdFx_arrayFirst'
+        'body':'xStdFx::arrayFirst($1);$2'
+    'xStdFx returnPre':
+        'prefix':'xStdFx_returnPre'
+        'body':'xStdFx::returnPre($1);$2'
+    'xStdFx arrayFixBlank':
+        'prefix':'xStdFx_arrayFixBlank'
+        'body':'xStdFx::arrayFixBlank($1);$2'
+    'xStdFx outPre':
+        'prefix':'xStdFx_outPre'
+        'body':'xStdFx::outPre($1);$2'
+    'xStdFx cipherEncrypt':
+        'prefix':'xStdFx_cipherEncrypt'
+        'body':'xStdFx::cipherEncrypt($1);$2'
+    'xStdFx decodeEntities':
+        'prefix':'xStdFx_decodeEntities'
+        'body':'xStdFx::decodeEntities($1);$2'
+    'xStdFx cipherDecrypt':
+        'prefix':'xStdFx_cipherDecrypt'
+        'body':'xStdFx::cipherDecrypt($1);$2'
+    'xStdFx gv':
+        'prefix':'xStdFx_gv'
+        'body':'xStdFx::gv($1);$2'
+    'xStdFx userSubmittedClean':
+        'prefix':'xStdFx_userSubmittedClean'
+        'body':'xStdFx::userSubmittedClean($1);$2'
+    'xStdFx pv':
+        'prefix':'xStdFx_pv'
+        'body':'xStdFx::pv($1);$2'
+    'xStdFx compareVars':
+        'prefix':'xStdFx_compareVars'
+        'body':'xStdFx::compareVars($1);$2'
+    'xStdFx ev':
+        'prefix':'xStdFx_ev'
+        'body':'xStdFx::ev($1);$2'
+    'xStdFx dv':
+        'prefix':'xStdFx_dv'
+        'body':'xStdFx::dv($1);$2'
+    'xStdFx eq':
+        'prefix':'xStdFx_eq'
+        'body':'xStdFx::eq($1);$2'
+    'xStdFx dq':
+        'prefix':'xStdFx_dq'
+        'body':'xStdFx::dq($1);$2'
+    'xStdFx partsCheck':
+        'prefix':'xStdFx_partsCheck'
+        'body':'xStdFx::partsCheck($1);$2'
+    'xStdFx nbs':
+        'prefix':'xStdFx_nbs'
+        'body':'xStdFx::nbs($1);$2'
+    'xStdFx firstDayOfWeek':
+        'prefix':'xStdFx_firstDayOfWeek'
+        'body':'xStdFx::firstDayOfWeek($1);$2'
+    'xStdFx ajaxLoad':
+        'prefix':'xStdFx_ajaxLoad'
+        'body':'xStdFx::ajaxLoad($1);$2'
+    'xStdFx secNumDec':
+        'prefix':'xStdFx_secNumDec'
+        'body':'xStdFx::secNumDec($1);$2'
+    'xStdFx sdq':
+        'prefix':'xStdFx_sdq'
+        'body':'xStdFx::sdq($1);$2'
+    'xStdFx removePrefix':
+        'prefix':'xStdFx_removePrefix'
+        'body':'xStdFx::removePrefix($1);$2'
+    'xStdFx secNumEnc':
+        'prefix':'xStdFx_secNumEnc'
+        'body':'xStdFx::secNumEnc($1);$2'
+    'xStdFx seq':
+        'prefix':'xStdFx_seq'
+        'body':'xStdFx::seq($1);$2'
+    'xStdFx nameToArray':
+        'prefix':'xStdFx_nameToArray'
+        'body':'xStdFx::nameToArray($1);$2'
+    'xStdFx trk':
+        'prefix':'xStdFx_trk'
+        'body':'xStdFx::trk($1);$2'
+    'xStdFx ajaxRedirect':
+        'prefix':'xStdFx_ajaxRedirect'
+        'body':'xStdFx::ajaxRedirect($1);$2'
+    'xStdFx baseRedirect':
+        'prefix':'xStdFx_baseRedirect'
+        'body':'xStdFx::baseRedirect($1);$2'
+    'xStdFx smartRedirect':
+        'prefix':'xStdFx_smartRedirect'
+        'body':'xStdFx::smartRedirect($1);$2'
+    'xStdFx arraySuperMerge':
+        'prefix':'xStdFx_arraySuperMerge'
+        'body':'xStdFx::arraySuperMerge($1);$2'
+    'xStdFx roundNumberBig':
+        'prefix':'xStdFx_roundNumberBig'
+        'body':'xStdFx::roundNumberBig($1);$2'
+    'xStdFx formatNumberAbv':
+        'prefix':'xStdFx_formatNumberAbv'
+        'body':'xStdFx::formatNumberAbv($1);$2'
+    'xStdFx randSec':
+        'prefix':'xStdFx_randSec'
+        'body':'xStdFx::randSec($1);$2'
+    'xStdFx randKey':
+        'prefix':'xStdFx_randKey'
+        'body':'xStdFx::randKey($1);$2'
+    'xStdFx randSid':
+        'prefix':'xStdFx_randSid'
+        'body':'xStdFx::randSid($1);$2'
+    'xStdFx timeRound':
+        'prefix':'xStdFx_timeRound'
+        'body':'xStdFx::timeRound($1);$2'
+    'xStdFx urlExists':
+        'prefix':'xStdFx_urlExists'
+        'body':'xStdFx::urlExists($1);$2'
+    'xStdFx ntl':
+        'prefix':'xStdFx_ntl'
+        'body':'xStdFx::ntl($1);$2'
+    'xStdFx brackToComma':
+        'prefix':'xStdFx_brackToComma'
+        'body':'xStdFx::brackToComma($1);$2'
+    'xStdFx jFixStr':
+        'prefix':'xStdFx_jFixStr'
+        'body':'xStdFx::jFixStr($1);$2'
+    'xStdFx attFixStr':
+        'prefix':'xStdFx_attFixStr'
+        'body':'xStdFx::attFixStr($1);$2'
+    'xStdFx sort2d':
+        'prefix':'xStdFx_sort2d'
+        'body':'xStdFx::sort2d($1);$2'
+    'xStdFx mSort':
+        'prefix':'xStdFx_mSort'
+        'body':'xStdFx::mSort($1);$2'
+    'xStdFx dts':
+        'prefix':'xStdFx_dts'
+        'body':'xStdFx::dts($1);$2'
+    'xStdFx numberToDate':
+        'prefix':'xStdFx_numberToDate'
+        'body':'xStdFx::numberToDate($1);$2'
+    'xStdFx formatDateTime':
+        'prefix':'xStdFx_formatDateTime'
+        'body':'xStdFx::formatDateTime($1);$2'
+    'xStdFx dtsAgo':
+        'prefix':'xStdFx_dtsAgo'
+        'body':'xStdFx::dtsAgo($1);$2'
+    'xStdFx secondsAgo':
+        'prefix':'xStdFx_secondsAgo'
+        'body':'xStdFx::secondsAgo($1);$2'
+    'xStdFx formatDateDiff':
+        'prefix':'xStdFx_formatDateDiff'
+        'body':'xStdFx::formatDateDiff($1);$2'
+    'xStdFx formatSigDec':
+        'prefix':'xStdFx_formatSigDec'
+        'body':'xStdFx::formatSigDec($1);$2'
+    'xStdFx isFormat':
+        'prefix':'xStdFx_isFormat'
+        'body':'xStdFx::isFormat($1);$2'
+    'xStdFx creditCardType':
+        'prefix':'xStdFx_creditCardType'
+        'body':'xStdFx::creditCardType($1);$2'
+    'xStdFx possessive':
+        'prefix':'xStdFx_possessive'
+        'body':'xStdFx::possessive($1);$2'
+    'xStdFx countS':
+        'prefix':'xStdFx_countS'
+        'body':'xStdFx::countS($1);$2'
+    'xStdFx editVars':
+        'prefix':'xStdFx_editVars'
+        'body':'xStdFx::editVars($1);$2'
+    'xStdFx hashCmd':
+        'prefix':'xStdFx_hashCmd'
+        'body':'xStdFx::hashCmd($1);$2'
+    'xStdFx qsArray':
+        'prefix':'xStdFx_qsArray'
+        'body':'xStdFx::qsArray($1);$2'
+    'xStdFx arrayQs':
+        'prefix':'xStdFx_arrayQs'
+        'body':'xStdFx::arrayQs($1);$2'
+    'xStdFx arrayQsVar':
+        'prefix':'xStdFx_arrayQsVar'
+        'body':'xStdFx::arrayQsVar($1);$2'
+    'xStdFx wordLimit':
+        'prefix':'xStdFx_wordLimit'
+        'body':'xStdFx::wordLimit($1);$2'
+    'xStdFx charLimit':
+        'prefix':'xStdFx_charLimit'
+        'body':'xStdFx::charLimit($1);$2'
