@@ -137,10 +137,24 @@
 # SQL
     'wheres[]':
         'prefix':'wheres'
-        'body':'$wheres = [];\n\n$wheres[] = " status < 90 ";\n$wheres[] = " site = ".$this->app->lite->siteId." ";\n$wheres[] = " page = ".$this->app->lite->pageId." ";\nWHERE ".implode(\' AND \', $wheres)."'
+        'body':"""$wheres = [
+                'status'=>1,
+                'site'=>$this->app->lite->siteId,
+                'page'=>$this->app->lite->pageId,
+            ];
+            WHERE ".$this->dbCon->sqlParts($wheres, 'AND')."$1"""
     'Sets[]':
         'prefix':'sets'
-        'body':'$sets = [];\n\n$sets[] = " status = 1 ";\n$sets[] = " site = ".$this->app->lite->siteId." ";\n$sets[] = " page = ".$this->app->lite->pageId." ";\n$sets[] = " created = \'".$this->app->lite->site->nowDts."\' ";\n$sets[] = " created_gmt = \'".xStdFx::dts(\'\')."\' ";\n$sets[] = " updated = \'".$this->app->lite->site->nowDts."\' ";\n$sets[] = " updated_gmt = \'".xStdFx::dts(\'\')."\' ";\nSET ".implode(\' , \', $sets)."'
+        'body':"""$sets = [
+                    'status'=>1,
+                    'site'=>$this->app->lite->siteId,
+                    'page'=>$this->app->lite->pageId,
+                    'created'=>$this->app->lite->site->nowDts,
+                    'created_gmt'=>$this->app->lite->gmtDts,
+                    'updated'=>$this->app->lite->site->nowDts,
+                    'updated_gmt'=>$this->app->lite->gmtDts,
+                ];
+                SET ".$this->dbCon->sqlParts($sets, ',')."$1"""
     'SQL String':
         'prefix':'sql'
         'body': '$sqlString = "\n\t${1:SELECT} $2\n\t";'
@@ -271,6 +285,9 @@
     'PrintPre with Comment':
         'prefix':'xsp'
         'body': 'xStdFx::printPre([\'${1:comment}\', ${2:$sqlString}]);$3'
+    'Break Comment':
+        'prefix':'xsb'
+        'body':'xStdFx::printPre(\'$1---------------------------------\');$2'
     'Current State':
         'prefix':'current_state'
         'body':"""xStdFx::printPre([
@@ -291,9 +308,6 @@
     'PHP Console Log':
         'prefix':'log'
         'body':'?>\n\t<script type="text/javascript">\n\t\tconsole.log(JSON.stringify(<?php echo json_encode(${1:array_values(${2:$reminders})}); ?>, null, 4));\n\t</script>\n<?php$3'
-    'Break Comment':
-        'prefix':'xsb'
-        'body':'xStdFx::printPre(\'---------------------------------\');$1'
 
 # Standard Utilities
     'Multi-Line PHP':
@@ -397,54 +411,62 @@
     'Trik Method':
         'prefix':'fn_trik'
         'body':"""####-----------------------------------------------------------
-            #### ${1:updateExpiredDealers}
-            ####-----------------------------------------------------------
+        	#### ${1:updateExpiredDealers}
+        	####-----------------------------------------------------------
 
-            public function ${1:updateExpiredDealers}($pxOptions = array()) {
+        	public function ${1:updateExpiredDealers}($pxOptions = array()) {
 
-                #### Start Method ---------------------------------------------
-                $method = new xStdForm();
+        	    #### Start Method ---------------------------------------------
+        	    $method = new xStdForm();
 
-                #### Find an ${2:dealer} to process ---------------------------------------------
-                if ($method->valid) {
+        	    #### Find an ${2:dealer} to process ---------------------------------------------
+        	    if ($method->valid) {
 
-                    $wheres = [];
+        	        $wheres = [
+        	            'status'=>1,$5
+        	        ];
 
-                    $wheres[] = " status < 90 ";$5
+        	        $sqlString = "
+        	        SELECT id, site, page
+        	        FROM ${2:dealer}s
+        			WHERE ".$this->dbCon->sqlParts($wheres, 'AND')."
+        	        ORDER BY updated ASC
+        	        LIMIT 1
+        	        ";
 
-                    $sqlString = "
-                    SELECT id, site, page
-                    FROM ${2:dealer}s
-                    WHERE ".implode(' AND ', $wheres)."
-                    ORDER BY updated ASC
-                    LIMIT 1
-                    ";
+        	        $${2:dealer} = $this->dbCon->getRow($sqlString);
 
-                    $${2:dealer} = $this->dbCon->getRow($sqlString);
+        			if (!$${2:dealer}) return $method;
 
-                }
+        			$method->return = ['foundItemToProcess'=>$${2:dealer}['id']];
 
-                #### Update Dealer ---------------------------------------------
-                if ($method->valid) {
+        	    }
 
-                    if ($${2:dealer}) {
+        	    #### Update ${3:Dealer} ---------------------------------------------
+        	    if ($method->valid) {
 
-                        $iax = new x${4:Sellerz}App('userlite');
+        	        if ($${2:dealer}) {
 
-                        $iax->lite->scopeSite = $${2:dealer}['site'];
-                        $iax->lite->scopePage = $${2:dealer}['page'];
+        				// Create a new App Instance
+        				$iax = new x${4:Sellerz}App('userlite', [
+        					'lite_scope'=>[
+        						'site'=>$${2:dealer}['site'],
+        						'page'=>$${2:dealer}['page'],
+        					]
+        				]);
 
-                        $method->return = ['foundItemToProcess'=>$${2:dealer}['id']];
+        				// Set the current user for the IAX
+        				$iax->lite->site->sbUsers->forceCurrent = $${2:dealer}['user'];
 
-                        $${2:dealer}Ob = $iax->sb${3:Dealer}s->sb${3:Dealer}($${2:dealer}['id']);
+        	            $${2:dealer}Ob = $iax->sb${3:Dealer}s->sb${3:Dealer}($${2:dealer}['id']);
 
-                    }
+        	        }
 
-                }
+        	    }
 
-                return $method;
+        	    return $method;
 
-            }
+        	}
             """
     'Tiny Sort':
         'prefix':'tinysort'
