@@ -106,7 +106,7 @@
 # Forms
     'Form':
         'prefix':'form'
-        'body':'<form id="${1:formMain}" role="form" action="" method="" onsubmit="return false;">\n\t\n\t$8\n\t\n\t<div class="">\n\t\n\t\t<div id="${1:formMain}Validate"></div>\n\t\t<button onclick="hFrag.xAjax(\'\',\'${2:mods/${3:start}/action.ajx?action=$4}\', \'${5:${1:formMain}Validate}\', \'${1:formMain}\');" type="submit" class="btn btn-primary">\n\t\t\t<b>${6:Save &amp; Continue}</b>\n\t\t</button>${7:\n\t\t\n\t\t<button type="button" onclick="history.go(-1);" class="btn btb-default">Cancel</button>}\n\t\t\n\t</div>\n\t\n</form>'
+        'body':'<form id="${1:formMain}" role="form" action="" method="" onsubmit="return false;">\n\t\n\t$8\n\t\n\t<div class="">\n\t\n\t\t<div id="${1:formMain}Validate"></div>\n\t\t<button onclick="hFrag.xAjax(\'\',\'${2:mods/${3:start}/action.ajx?action=$4}\', \'${5:${1:formMain}Validate}\', \'${1:formMain}\');" type="submit" class="btn btn-primary">\n\t\t\t<b>${6:Save &amp; Continue}</b>\n\t\t</button>${7:\n\t\t\n\t\t<button type="button" onclick="history.go(-1);" class="btn btn-default">Cancel</button>}\n\t\t\n\t</div>\n\t\n</form>'
     'Form Group':
         'prefix':'fg'
         'body': '<div class="form-group">\n\t<label for="fld_${1:title}">${2:Title}</label>\n\t<input type="text" name="fld_${1:title}" value="${3:<?php echo $${4:app->v->${5:item}->rec->data}[\'${1:title}\']; ?>}" class="form-control" />\n</div>$6'
@@ -165,13 +165,28 @@
 # Date functions
     'Date Create Database Format':
         'prefix':'dc'
-        'body':"$app->lite->site->now->format('${2:Y-m-d}')$3"
+        'body':"date_create(${1:$app->lite->site->nowDts})->format('${2:Y-m-d}')$3"
     'Date Create Visual Format':
         'prefix':'dcf'
-        'body':"$app->lite->site->now->format('${2:m/d/Y}')$3"
+        'body':"date_create(${1:$app->lite->site->nowDts})->format('${2:m/d/Y}')$3"
     'Date Modify':
         'prefix':'dcm'
-        'body':"$app->lite->site->now->modify('${2:+1 days}')->format('${3:Y-m-d}')$4"
+        'body':"date_create(${1:$app->lite->site->nowDts})->modify('${2:+1 days}')->format('${3:Y-m-d}')$4"
+    'Convert GMT Date':
+        'prefix':'date_convert'
+        'body':'$$1app->lite->site->dateConvert(${2:$user[\'created_gmt\']}${3:, \'dts\'})$4'
+    'GMT Date Object':
+        'prefix':'date_gmt_dateOb'
+        'body':'$$1app->lite->gmt$2'
+    'GMT Timestamp':
+        'prefix':'date_gmt_timestamp'
+        'body':'$$1app->lite->gmtDts$2'
+    'Site Date Object':
+        'prefix':'date_site_dateOb'
+        'body':'$$1app->lite->site->date$2'
+    'Site Timestamp':
+        'prefix':'date_site_timestamp'
+        'body':'$$1app->lite->site->date(\'dts\')$2'
 
 # Formats
     'Money Format Number':
@@ -292,6 +307,11 @@
         'body':"""if ((time() - $_SERVER['REQUEST_TIME']) > 30) {
             ${1:$this->finishRequest();}
         }$2"""
+    'Microtime Timer':
+        'prefix':'timer'
+        'body':"""$start = microtime();
+            xStdFx::printPre(microtime() - $start);
+            exit;$1"""
 
 # Userlite Specific
     'App Info':
