@@ -132,7 +132,7 @@
         'body':'####----------------------------------------------------------------------------\n#### upload\n####----------------------------------------------------------------------------\nif ($action==\'upload\') {\n\n\txRepAction(\n\t\t\'${1:module}/upload/submit\'\n\t);\n\n\t$response = ${2:$app->v->${3:${1:module}}->upload}(xStdFx::pv(\'fld_files\',\'nocheck\'));\n\n\t\if ($response->valid) {\n\n\t\txRepAction(\n\t\t\t\'${1:module}/upload/submit\',\n\t\t\t\'${1:module}/upload/complete\'\n\t\t);\n\n\t\t?>\n\t\t<div class="alert alert-success">\n\t\t\t<b>Done!</b>  Loading the next step...\n\t\t</div>\n\t\t<script type="text/javascript">\n\t\t\tusl_alerts_fade();\n\t\t\thFrag.click({settings:{rnd:Math.floor(Math.random() * 9999)}});\n\t\t</script>\n\t\t<?php\n\n\t} else {\n\t\techo $response->probsShow();\n\t}\n}$4'
     'Upload Method':
         'prefix':'fn_upload'
-        'body':'####--------------------------------------------------------------------------------------------------------------------------\n#### upload\n####--------------------------------------------------------------------------------------------------------------------------\n\npublic function upload($pxData, $pxOptions = array()) {\n\n\t$location = $this->app->lite->sbUpload->fileMoveData($pxData);\n\n\treturn $this->update([\n\t\t\'${1:file_path}\'=>$location\n\t]);\n\n}$2'
+        'body':'####----------------------------------------------------------------------------\n#### upload\n####----------------------------------------------------------------------------\n\npublic function upload($pxData, $pxOptions = array()) {\n\n\t$location = $this->app->lite->sbUpload->fileMoveData($pxData);\n\n\treturn $this->update([\n\t\t\'${1:file_path}\'=>$location\n\t]);\n\n}$2'
 
 # SQL
     'wheres[]':
@@ -174,7 +174,97 @@
         'body':'####----------------------------------------------------------------------------\n#### ${1:update}\n####----------------------------------------------------------------------------\nif ($action==\'${1:update}\') {\n\n\txRepAction(\n\t\t\'${2:module/settings/update}/submit\'\n\t);\n\n\t$response = ${3:$app->v->${4:module}->${1:update}}(xStdFx::fieldsToArray());\n\n\t\if ($response->valid) {\n\n\t\txRepAction(\n\t\t\t\'${2:module/settings/update}/submit\',\n\t\t\t\'${2:module/settings/update}/complete\'\n\t\t);\n\n\t\t?>\n\t\t<div class="alert alert-success">\n\t\t\t<b>Changes saved.</b>\n\t\t</div>\n\t\t<script type="text/javascript">\n\t\t\tusl_alerts_fade();\n\t\t</script>\n\t\t<?php\n\n\t} else {\n\t\techo $response->probsShow();\n\t}\n}$5'
     'Simple Action Step':
         'prefix':'simpleaction'
-        'body':'####--------------------------------------------------------------------------------------------------------------------------\n#### ${1:order}\n####--------------------------------------------------------------------------------------------------------------------------\nif ($action==\'${1:order}\') {\n\n\txLogAction(\'${3:recipe/ingredients/sort}\');\n\n\t$app->v->${2:recipe}->${1:order}(xStdFx::gv(\'${4:fld_order}\'));\n\n}$5'
+        'body':'####----------------------------------------------------------------------------\n#### ${1:order}\n####----------------------------------------------------------------------------\nif ($action==\'${1:order}\') {\n\n\txLogAction(\'${3:recipe/ingredients/sort}\');\n\n\t$app->v->${2:recipe}->${1:order}(xStdFx::gv(\'${4:fld_order}\'));\n\n}$5'
+    'Batch Action':
+        'prefix':'action_batch'
+        'body':"""####----------------------------------------------------------------------------
+            #### renotifyAll
+            ####----------------------------------------------------------------------------
+            if ($action=='renotifyAll') {
+
+                xRepAction(
+                    '${1:sessions}/renotifyAll/chunk'
+                );
+
+                $response = $app->${2:sbProcess->renotifyAllOrders}(xStdFx::gv('chunk_index'));
+
+                if (!$response['complete']) {
+                    ?>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<?php echo $response['progress']; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $response['progress']; ?>%">
+                                Batch <?php echo $response['chunk_index'] ?> of <?php echo $response['total']; ?>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            hFrag.xAjax('', 'mods/${3:start/settings}/action.ajx?action=renotifyAll&chunk_index=<?php echo $response['chunk_index']; ?>', 'refreshing-data');
+                        </script>
+
+                    <?php
+                } else {
+                    ?>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                Processing Complete
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            setTimeout(function(){
+                                hFrag.click({settings:{rnd:Math.floor(Math.random() * 9999)}});
+                            },1500);
+                        </script>
+
+                    <?php
+                }
+
+            }$4"""
+    'Batch Action Button':
+        'prefix':'button_batch_action'
+        'body':"""<div id="refreshing-data"> </div>
+            <button name="recalc" class="btn btn-default btn-sm" onclick="hFrag.xAjax('', 'mods/${1:start/settings}/action.ajx?action=renotifyAll', 'refreshing-data', '');">${2:Renotify All Sessions}</button>"""
+    'Batch Action Function':
+        'prefix':'fn_batch_action'
+        'body':"""####------------------------------------------------------------------------
+            #### renotifyAllOrder
+            ####------------------------------------------------------------------------
+
+            public function renotifyAllOrders($chunkIndex, $pxOptions = array()) {
+
+                if (!$chunkIndex) {
+                    $chunkIndex = 0;
+                }
+
+                $wheres = [
+                    'status'=>2,
+                    'site'=>$this->app->lite->siteId,
+                    'page'=>$this->app->lite->pageId,
+                ];
+
+                $sqlString = "
+                SELECT *
+                FROM ${1:session}s
+                WHERE ".$this->dbCon->sqlParts($wheres, 'AND')."
+                ";
+
+                $${1:session}s = $this->dbCon->getRowsId($sqlString);
+
+                // xStdFx::printPre(count($${1:session}s));
+                // exit;
+
+                $${1:session}Chunks = array_chunk($${1:session}s, 10, true);
+                $${1:session}s = $${1:session}Chunks[$chunkIndex];
+
+                foreach ($${1:session}s as $${1:session}Key => $${1:session}) {
+                    $this->app->${2:sbSessions->sbSession}($${1:session}['id'])->checkoutProcessItemsNotify();
+                }
+
+                return [
+                    'chunk_index'=>($chunkIndex + 1),
+                    'progress'=>((($chunkIndex + 1) / count($${1:session}Chunks)) * 100),
+                    'total'=>count($${1:session}Chunks),
+                    'complete'=>($chunkIndex == count($${1:session}Chunks) -1),
+                ];
+
+            }$3"""
 
 # Date functions
     'Date Create Database Format':
@@ -326,6 +416,80 @@
         'body':"""$start = microtime();
             xStdFx::printPre(microtime() - $start);
             exit;$1"""
+    'Autoname':
+        'prefix':'fn_autoname'
+        'body':"""####------------------------------------------------------------------------
+            #### autoName
+            ####------------------------------------------------------------------------
+
+            public function autoName($pxTitle, $pxOptions = array()) {
+
+            	$i = 0;
+                $nameRoot = strtolower(xStdFx::safeChars(strtolower($pxTitle), 'safename', '_'));
+
+            	do {
+
+            		if ($i==0) {
+                        $nameTry = $nameRoot;
+                    } else {
+                        if ($i>20) {
+                            $nameTry = $nameRoot.'_'.mt_rand(111111,999999);
+                        } else {
+                            $nameTry = $nameRoot.'_'.$i;
+                        }
+                    }
+
+            		$sqlString = "
+                    SELECT id
+                    FROM
+                    ${1:namespaces}
+                    WHERE status < 90
+                    AND site = ".$this->app->lite->siteId."
+                    AND page = ".$this->app->lite->pageId."
+                    AND name = '".$this->dbCon->esc($nameTry)."'
+                    ";
+
+                    $check = $this->dbCon->getRow($sqlString);
+
+            		if (!$check) {
+            			return $nameTry;
+            		}
+            		$i++;
+
+            	} while ($check);
+
+            }$2"""
+    'Autoname Check':
+        'prefix':'valid_autoname'
+        'body':"""#### Auto name -------------------------------------------------------
+            if ($method->valid) {
+
+                if ($pxId) {
+                    if (isset($results['name'])) {
+                        $sqlString = "
+                        SELECT id
+                        FROM
+                        ${1:namespaces}
+                        WHERE status < 90
+                        AND site = ".$this->app->lite->siteId."
+                        AND page = ".$this->app->lite->pageId."
+                        AND name = '".$this->dbCon->esc($results['name'])."'
+                        AND id <> ".$pxId."
+                        ";
+                        $check = $this->dbCon->getRow($sqlString);
+                        if ($check) {
+                            $method->addProb('The name you have chosen is not available.');
+                        }
+                    }
+                }
+
+                if (!$pxId || !$this->sb${2:Namespace}($pxId)->rec->data['name']) {
+                    if (isset($results['title'])) {
+                        $results['name'] = $this->autoName($results['title']);
+                        $method->return['name'] = $results['name'];
+                    }
+                }
+            }$3"""
 
 # Userlite Specific
     'App Info':
