@@ -178,15 +178,15 @@
     'Batch Action':
         'prefix':'action_batch'
         'body':"""####----------------------------------------------------------------------------
-            #### renotifyAll
+            #### ${1:renotifyAll}
             ####----------------------------------------------------------------------------
-            if ($action=='renotifyAll') {
+            if ($action=='${1:renotifyAll}') {
 
                 xRepAction(
-                    '${1:sessions}/renotifyAll/chunk'
+                    '${2:sessions}/${1:renotifyAll}/chunk'
                 );
 
-                $response = $app->${2:sbProcess->renotifyAllOrders}(xStdFx::gv('chunk_index'));
+                $response = $app->${3:sbProcess->${1:renotifyAll}Orders}(xStdFx::gv('chunk_index'));
 
                 if (!$response['complete']) {
                     ?>
@@ -196,7 +196,7 @@
                             </div>
                         </div>
                         <script type="text/javascript">
-                            hFrag.xAjax('', 'mods/${3:start/settings}/action.ajx?action=renotifyAll&chunk_index=<?php echo $response['chunk_index']; ?>', 'refreshing-data');
+                            hFrag.xAjax('', 'mods/${4:start/settings}/action.ajx?action=${1:renotifyAll}&chunk_index=<?php echo $response['chunk_index']; ?>', 'refreshing-data');
                         </script>
 
                     <?php
@@ -216,11 +216,8 @@
                     <?php
                 }
 
-            }$4"""
-    'Batch Action Button':
-        'prefix':'button_batch_action'
-        'body':"""<div id="refreshing-data"> </div>
-            <button name="recalc" class="btn btn-default btn-sm" onclick="hFrag.xAjax('', 'mods/${1:start/settings}/action.ajx?action=renotifyAll', 'refreshing-data', '');">${2:Renotify All Sessions}</button>"""
+            }${6:<div id="refreshing-data"> </div>
+                <button name="recalc" class="btn btn-default btn-sm" onclick="hFrag.xAjax('', 'mods/${4:start/settings}/action.ajx?action=${1:renotifyAll}', 'refreshing-data', '');">${5:Renotify All Sessions}</button>}"""
     'Batch Action Function':
         'prefix':'fn_batch_action'
         'body':"""####------------------------------------------------------------------------
@@ -398,6 +395,9 @@
     'PHP Console Log':
         'prefix':'log'
         'body':'?>\n\t<script type="text/javascript">\n\t\tconsole.log(JSON.stringify(<?php echo json_encode(${1:array_values(${2:$reminders})}); ?>, null, 4));\n\t</script>\n<?php$3'
+    'JSON Decode':
+        'prefix':'jd'
+        'body':'json_decode(${1:$json}, true);$2'
 
 # Standard Utilities
     'Multi-Line PHP':
