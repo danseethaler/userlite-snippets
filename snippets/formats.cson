@@ -1,22 +1,22 @@
 '.text.html, text.html.php .quoted.double.html, .text.html .meta.scope.between-tag-pair, .text.html .punctuation.tag.begin, text.html.php .meta.tag.inline.any.html':
     'Y-m-d H:i:s':
         'prefix':'format_dts'
-        'body':'dts'
+        'body':'Y-m-d H:i:s'
     'Y-m-d':
         'prefix':'format_d'
-        'body':'d'
+        'body':'Y-m-d'
     'W':
         'prefix':'format_W'
         'body':'W'
     'F jS, Y':
         'prefix':'format_full'
-        'body':'full'
+        'body':'F jS, Y'
     'm/d/Y':
         'prefix':'format_user'
-        'body':'user'
+        'body':'m/d/Y'
     'F jS, Y g:i:s A':
         'prefix':'format_fulltime'
-        'body':'fulltime'
+        'body':'F jS, Y g:i:s A'
     'm/d/Y g:i A':
         'prefix':'format_shorttime'
-        'body':'shorttime'
+        'body':'m/d/Y g:i A'
