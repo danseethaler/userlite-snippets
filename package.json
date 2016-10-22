@@ -2,7 +2,7 @@
   "name": "userlite-snippets",
   "main": "./lib/userlite-snippets",
   "version": "0.14.5",
-  "description": "A short description of your package",
+  "description": "Snippets for Userlite developers.",
   "keywords": [],
   "activationCommands": {
     "atom-workspace": "userlite-snippets:toggle"
