@@ -17,7 +17,7 @@
 # Navigation
     'Rnd Hash':
         'prefix':'rnd'
-        'body':'hFrag.click({${1:settings}:{rnd:Math.floor(Math.random() * 9999)}});${2: return false;}'
+        'body':'hFrag.click({${1:settings}:{rnd:Math.floor(Math.random() * 9999)}}, {\'replace\':true});${2: return false;}'
     'UL Link Item':
         'prefix':'ulink'
         'body':"$links['${1:promotions}'] = [\n\t't'=>'${2:Promotions}',\n];$3"
@@ -96,12 +96,15 @@
     'Field':
         'prefix':'field'
         'body': "$fields['${1:description}'] = [\n\t'title'=>'${2:Description}',\n\t'req'=>${3:false},\n\t'max'=>${4:255},\n\t'format'=>'$5',\n\t'saveTo'=>[${6:\n\t\t'sql',}\n\t\t'sdb',\n\t],\n];$7"
-    'Encrypted Field':
-        'prefix':'fieldev'
-        'body':'$fields[\'${1:card_code}\'] = [\n\t\'title\'=>\'${2:Card Code}\',\n\t\'req\'=>${3:false},\n\t\'encrypt\'=>${4:true},\n\t\'encryptSalt\'=>${5:$this->app->lite->site->salt},\n\t\'max\'=>${6:255},\n\t\'format\'=>\'\',\n\t\'saveTo\'=>[\n\t\t\'sdb\',\n\t],\n];$7'
     'Field Type':
         'prefix':'ftype'
         'body':"\n'${1:url}'=>[\n\t'type'=>'data',${2:\n\t'default'=>'${3:0}',}\n],$4"
+    'Decrypt Data Point':
+        'prefix':'crypto_rec_dv'
+        'body':"$this->rec->dataPointDv('${1:card_number}')$2"
+    'Encrypt Field':
+        'prefix':'crypto_true'
+        'body':"'crypto_enc'=>true,$1"
 
 # Forms
     'Form':
@@ -301,6 +304,9 @@
     'PHP Function':
         'prefix':'fn'
         'body': '####------------------------------------------------------------------------\n#### ${1:enumerate}\n#### NOTE: ${2:comments}\n####------------------------------------------------------------------------\n\npublic function ${1:enumerate}($3$pxOptions = array()) {\n\n\t${4:return $this->gets[\'${1:enumerate}\'] = $${1:enumerate};}\n\n}'
+    'Get JSON from POST':
+        'prefix':'file_get_json'
+        'body':"file_get_contents('php://input')$1"
     'Set User in ini':
         'prefix':'user_ini'
         'body':'$1public function ini($pxMe, $pxUser = false) {\n\n\tif ($pxUser) {\n\t\t$this->id = intval($pxUser);\n\t\t$this->ob = $this->app->lite->site->sbUsers->sbUser($pxUser);\n\t} else {\n\t\t$this->id = $this->app->lite->user->id;\n\t\t$this->ob = $this->app->lite->user;\n\t}$2'
@@ -500,6 +506,31 @@
             'site_id'=>$$1app->lite->siteId,
             'user_id'=>$$1app->lite->user->id,
         ]);$2"""
+    'Debug Buffer':
+        'prefix':'debug_buffer'
+        'body':'${1:?xusldebug=true}$2'
+    'App V':
+        'prefix':'v'
+        'body':'$app->v->$1'
+    'API Event Notification':
+        'prefix':'api_notification'
+        'body':"""$this->app->lite->site->sbApi->cluster->sbActions->push([
+                'action_app'=>$this->app->id,
+                'action'=>'${1:orders/order/status_change}',
+                'data'=>[
+                    '${2:session_id}'=>${3:$pxId},
+                ]
+            ]);$4"""
+    'API Index':
+        'prefix':'api_index'
+        'body':"""<?php
+
+            $options = [];
+            if (xStdFx::gv('xAccessKeyId')) {
+                $options['accessKeyId'] = xStdFx::gv('xAccessKeyId');
+            }
+
+            $app->sbApi->run($options);$1"""
     'USL Return Query String':
         'prefix':'uslqs_return'
         'body':'window.location = \'/user/login?uslqs_return=\' + encodeURI(\'${1:/shopping/billing}\');$2'
