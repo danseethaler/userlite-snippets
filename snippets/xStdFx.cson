@@ -119,6 +119,9 @@
     'xStdFx printPre':
         'prefix':'xStdFx_printPre'
         'body':'xStdFx::printPre($1);$2'
+    'xStdFx printPreConsole':
+        'prefix':'xStdFx_printPreConsole'
+        'body':'xStdFx::printPreConsole($1);$2'
     'xStdFx arrayColumnSort':
         'prefix':'xStdFx_arrayColumnSort'
         'body':'xStdFx::arrayColumnSort($1);$2'

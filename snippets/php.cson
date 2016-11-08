@@ -23,10 +23,10 @@
         'body':"$links['${1:promotions}'] = [\n\t't'=>'${2:Promotions}',\n];$3"
     'Start Navigation':
         'prefix':'nav-start'
-        'body':'<div class="xHeadNav">\n\t<div class="container">\n\t\t<div class="xHeadRight">\n\t\t\t<a title="App Settings" onclick="<?php echo $xPage->hfLink(\'mod::p:settings|n:app\', \'click\', [\'only\' => 1]); ?>; return false;" href="#"><i class="ulicon-settings"></i></a> &nbsp;\n\t\t\t<a title="We need your feedback for this app!" href="/concerto/ent/<?php echo $app->id; ?>"><i class="ulicon-message"></i></a>\n\t\t</div>\n\t <div class="xHeadTitle">\n\t\t\t<span class="xHeadBreadcrumb app-title">\n\t<?php echo $app->instance->rec->data[\'title\']; ?>\n\t\t\t</span>\n\t\t</div>\n\t\t<div class="xHeadTabs">\n\t\t\t<div class="xHeadTabsLeft">\n\t\t\t\t<?php\n\n\t$links = array();\n\n\t$links[\'${1:template_items}\'] = [\n\t\t\t\t\t\'t\' => \'${2:Template Items}\',\n\t];\n\n\t$app->sbNav->links(\n\t\tarray(\n\t\t\t\'name\' => \'${3:start}\',\n\t\t\t\'mod\' => \'${3:start}\',\n\t\t\t\'links\' => $links,\n\t\t)\n\t);\n\t?>\n \n\t\t\t</div>\n\t\t</div>\n\t</div>\n </div>\n \n<?php\n$app->sbNav->sec(array(\n\t\'name\'=>\'${3:start}\',\n\t\'click\'=>\'${3:start}::n:${3:start}|p:\'.key($links),\n));$4'
+        'body':'<div class="xHeadNav">\n\t<div class="container">\n\t\t<div class="xHeadRight">\n\t\t\t<a title="App Settings" onclick="<?php echo $xPage->hfLink(\'mod::p:settings|n:app\', \'click\', [\'only\' => 1]); ?>; return false;" href="#"><i class="ulicon-settings"></i></a> &nbsp;\n\t\t\t<a title="We need your feedback for this app!" href="/concerto/ent/<?php echo $app->id; ?>"><i class="ulicon-message"></i></a>\n\t\t</div>\n\t <div class="xHeadTitle">\n\t\t\t<span class="xHeadBreadcrumb app-title">\n\t<?php echo $app->instance->rec->data[\'title\']; ?>\n\t\t\t</span>\n\t\t</div>\n\t\t<div class="xHeadTabs">\n\t\t\t<div class="xHeadTabsLeft">\n\t\t\t\t<?php\n\n\t$links = [];\n\n\t$links[\'${1:template_items}\'] = [\n\t\t\t\t\t\'t\' => \'${2:Template Items}\',\n\t];\n\n\t$app->sbNav->links(\n\t\tarray(\n\t\t\t\'name\' => \'${3:start}\',\n\t\t\t\'mod\' => \'${3:start}\',\n\t\t\t\'links\' => $links,\n\t\t)\n\t);\n\t?>\n \n\t\t\t</div>\n\t\t</div>\n\t</div>\n </div>\n \n<?php\n$app->sbNav->sec(array(\n\t\'name\'=>\'${3:start}\',\n\t\'click\'=>\'${3:start}::n:${3:start}|p:\'.key($links),\n));$4'
     'Sub Navigation Tabs':
         'prefix':'navtabs'
-        'body':'<div class="xToolbar">\n\t<div class="container">\n\t\t<div class="xToolbarIn">\n\t\t\t<div class="xToolbarMenu">\n\n\t\t\t\t<?php\n\n\t\t\t\t$links = array();\n\n\t\t\t\t$links[\'${1:training}\'] = [\n\t\t\t\t\t\'t\'=>\'${2:Training}\',\n\t\t\t\t];\n\n\t\t\t\t$app->sbNav->links(\n\t\t\t\t\tarray(\n\t\t\t\t\t\t\'name\'=>\'${4:settings}\',\n\t\t\t\t\t\t\'mod\'=>\'${3:employee}\',\n\t\t\t\t\t\t\'links\'=>$links,\n\t\t\t\t\t)\n\t\t\t\t);\n\t\t\t\t?>\n\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n<?php\n\n$app->sbNav->sec([\n\t\'name\'=>\'${4:settings}\',\n\t\'effect\'=>true,\n\t\'click\'=>\'${4:settings}::n:${3:employee}|p:\'.key($links),\n]);\n$5'
+        'body':'<div class="xToolbar">\n\t<div class="container">\n\t\t<div class="xToolbarIn">\n\t\t\t<div class="xToolbarMenu">\n\n\t\t\t\t<?php\n\n\t\t\t\t$links = [];\n\n\t\t\t\t$links[\'${1:training}\'] = [\n\t\t\t\t\t\'t\'=>\'${2:Training}\',\n\t\t\t\t];\n\n\t\t\t\t$app->sbNav->links(\n\t\t\t\t\tarray(\n\t\t\t\t\t\t\'name\'=>\'${4:settings}\',\n\t\t\t\t\t\t\'mod\'=>\'${3:employee}\',\n\t\t\t\t\t\t\'links\'=>$links,\n\t\t\t\t\t)\n\t\t\t\t);\n\t\t\t\t?>\n\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n<?php\n\n$app->sbNav->sec([\n\t\'name\'=>\'${4:settings}\',\n\t\'effect\'=>true,\n\t\'click\'=>\'${4:settings}::n:${3:employee}|p:\'.key($links),\n]);\n$5'
     'Vars Add':
         'prefix':'vars add'
         'body':"'varsadd'=>'|${1:t}:|${2:month}:'"
@@ -135,7 +135,7 @@
         'body':'####----------------------------------------------------------------------------\n#### upload\n####----------------------------------------------------------------------------\nif ($action==\'upload\') {\n\n\txRepAction(\n\t\t\'${1:module}/upload/submit\'\n\t);\n\n\t$response = ${2:$app->v->${3:${1:module}}->upload}(xStdFx::pv(\'fld_files\',\'nocheck\'));\n\n\t\if ($response->valid) {\n\n\t\txRepAction(\n\t\t\t\'${1:module}/upload/submit\',\n\t\t\t\'${1:module}/upload/complete\'\n\t\t);\n\n\t\t?>\n\t\t<div class="alert alert-success">\n\t\t\t<b>Done!</b>  Loading the next step...\n\t\t</div>\n\t\t<script type="text/javascript">\n\t\t\tusl_alerts_fade();\n\t\t\thFrag.click({settings:{rnd:Math.floor(Math.random() * 9999)}});\n\t\t</script>\n\t\t<?php\n\n\t} else {\n\t\techo $response->probsShow();\n\t}\n}$4'
     'Upload Method':
         'prefix':'fn_upload'
-        'body':'####----------------------------------------------------------------------------\n#### upload\n####----------------------------------------------------------------------------\n\npublic function upload($pxData, $pxOptions = array()) {\n\n\t$location = $this->app->lite->sbUpload->fileMoveData($pxData);\n\n\treturn $this->update([\n\t\t\'${1:file_path}\'=>$location\n\t]);\n\n}$2'
+        'body':'####----------------------------------------------------------------------------\n#### upload\n####----------------------------------------------------------------------------\n\npublic function upload($pxData, $pxOptions = []) {\n\n\t$location = $this->app->lite->sbUpload->fileMoveData($pxData);\n\n\treturn $this->update([\n\t\t\'${1:file_path}\'=>$location\n\t]);\n\n}$2'
 
 # SQL
     'wheres[]':
@@ -172,6 +172,14 @@
         'body':'$this->dbCon->esc($1)$2'
 
 # Action Steps
+    'Action':
+        'prefix':'action'
+        'body':"""<?php
+
+            $action = xStdFx::gv('action');
+
+            $1
+            """
     'Action Step':
         'prefix':'actionstep'
         'body':'####----------------------------------------------------------------------------\n#### ${1:update}\n####----------------------------------------------------------------------------\nif ($action==\'${1:update}\') {\n\n\txRepAction(\n\t\t\'${2:module/settings/update}/submit\'\n\t);\n\n\t$response = ${3:$app->v->${4:module}->${1:update}}(xStdFx::fieldsToArray());\n\n\t\if ($response->valid) {\n\n\t\txRepAction(\n\t\t\t\'${2:module/settings/update}/submit\',\n\t\t\t\'${2:module/settings/update}/complete\'\n\t\t);\n\n\t\t?>\n\t\t<div class="alert alert-success">\n\t\t\t<b>Changes saved.</b>\n\t\t</div>\n\t\t<script type="text/javascript">\n\t\t\tusl_alerts_fade();\n\t\t</script>\n\t\t<?php\n\n\t} else {\n\t\techo $response->probsShow();\n\t}\n}$5'
@@ -227,7 +235,7 @@
             #### renotifyAllOrder
             ####------------------------------------------------------------------------
 
-            public function renotifyAllOrders($chunkIndex, $pxOptions = array()) {
+            public function renotifyAllOrders($chunkIndex, $pxOptions = []) {
 
                 if (!$chunkIndex) {
                     $chunkIndex = 0;
@@ -303,7 +311,7 @@
 # Functions and Methods
     'PHP Function':
         'prefix':'fn'
-        'body': '####------------------------------------------------------------------------\n#### ${1:enumerate}\n#### NOTE: ${2:comments}\n####------------------------------------------------------------------------\n\npublic function ${1:enumerate}($3$pxOptions = array()) {\n\n\t${4:return $this->gets[\'${1:enumerate}\'] = $${1:enumerate};}\n\n}'
+        'body': '####------------------------------------------------------------------------\n#### ${1:enumerate}\n#### NOTE: ${2:comments}\n####------------------------------------------------------------------------\n\npublic function ${1:enumerate}($3$pxOptions = []) {\n\n\t${4:return $this->gets[\'${1:enumerate}\'] = $${1:enumerate};}\n\n}'
     'Get JSON from POST':
         'prefix':'file_get_json'
         'body':"file_get_contents('php://input')$1"
@@ -327,7 +335,33 @@
         'body':'if (!$response->valid) {\n\t$method->addProbs($response->probs);\n\treturn $method;\n}$1'
     'Rec Function':
         'prefix':'fnrec'
-        'body':'####------------------------------------------------------------------------\n#### rec\n####------------------------------------------------------------------------\n\npublic function rec($pxOptions = array()) {\n\t\n\t$rec = new stdClass();\n\n\t$wheres = [];\n\n\t$wheres[] = " status < 90 ";\n\t$wheres[] = " site = ".$this->app->lite->siteId." ";\n\t$wheres[] = " page = ".$this->app->lite->pageId." ";\n\n\t$wheres[] = " id = ".$this->id." ";\n\n\t$sqlString = "\n\t\tSELECT *\n\t\tFROM ${1:instance_transactions}\n\t\tWHERE ".implode(\' AND \', $wheres)."\n\t\t";\n\n\n\t$rec->data = $this->dbCon->getRow($sqlString);\n\n\treturn $this->gets[\'rec\'] = $rec;\n\t\n}$2'
+        'body':"""####------------------------------------------------------------------------
+            #### rec
+            ####------------------------------------------------------------------------
+
+            public function rec($pxOptions = []) {
+
+                $rec = new stdClass();
+
+                $wheres = [
+                    '__LESS'=>[
+                        'status'=>90
+                    ],
+                    'site'=>$this->app->lite->siteId,
+                    'page'=>$this->app->lite->pageId,
+                ];
+
+                $sqlString = "
+                    SELECT *
+                    FROM ${1:bank_accounts}
+                    WHERE ".$this->dbCon->sqlParts($wheres, 'AND')."
+                    ";
+
+                $rec->data = $this->dbDst->getRow($sqlString);
+
+                return $this->gets['rec'] = $rec;
+
+            }$2"""
     'Replace Old Rec Function':
         'prefix':'fnrec_replace_old'
         'body':"""####-----------------------------------------------------------
@@ -337,7 +371,7 @@
             #### from this file
             ####-----------------------------------------------------------
 
-            public function rec($pxOptions = array()) {
+            public function rec($pxOptions = []) {
 
                 $newRec = $this->app->sdb->record('${1:language_lesson_}'.$this->id, 'omni', $this->${2:lessons}->format);
 
@@ -428,7 +462,7 @@
             #### autoName
             ####------------------------------------------------------------------------
 
-            public function autoName($pxTitle, $pxOptions = array()) {
+            public function autoName($pxTitle, $pxOptions = []) {
 
             	$i = 0;
                 $nameRoot = strtolower(xStdFx::safeChars(strtolower($pxTitle), 'safename', '_'));
@@ -533,7 +567,10 @@
             $app->sbApi->run($options);$1"""
     'USL Return Query String':
         'prefix':'uslqs_return'
-        'body':'window.location = \'/user/login?uslqs_return=\' + encodeURI(\'${1:/shopping/billing}\');$2'
+        'body':"window.location = '/user/login?uslqs_return=' + encodeURI('/<?php echo xStdFx::gv('uslapp_directpath'); ?>');$2"
+    'Direct Path':
+        'prefix':'dp'
+        'body':'$app->lite->sbPage->directPath${1:(1)}$2'
     'Standard UL Function':
         'prefix':'xs'
         'body': 'xStdFx::${1:printPre}(${2:$sqlString})${3:;}$4'
@@ -609,7 +646,7 @@
         	#### ${1:updateExpiredDealers}
         	####-----------------------------------------------------------
 
-        	public function ${1:updateExpiredDealers}($pxOptions = array()) {
+        	public function ${1:updateExpiredDealers}($pxOptions = []) {
 
         	    #### Start Method ---------------------------------------------
         	    $method = new xStdForm();
@@ -668,13 +705,13 @@
         'body':"var curSort = 'asc';\n\nfunction sortCols(pxBy) {\n\n\ttinysort('tr.dataRow', {\n\t\tselector: pxBy,\n\t\torder: curSort\n\t});\n\n\tif (curSort == 'asc') {\n\t\tcurSort = 'desc';\n\t} else {\n\t\tcurSort = 'asc';\n\t}\n}${1: onclick=\"sortCols('.category');\"}"
     'Activity':
         'prefix':'activity'
-        'body':"####----------------------------------------------------------------------------\n#### activity\n####----------------------------------------------------------------------------\n\npublic function activity($pxOptions = array()) {\n\n\treturn $this->app->lite->site->sbActivities->sbActivity(\n\t\t[\n\t\t\t'page'=>$this->app->lite->pageId,\n\t\t\t'app'=>$this->app->id,\n\t\t\t'name'=>'${1:action}',\n\t\t\t'id'=>$this->id,\n\t\t]\n\n\t);\n\n}$2"
+        'body':"####----------------------------------------------------------------------------\n#### activity\n####----------------------------------------------------------------------------\n\npublic function activity($pxOptions = []) {\n\n\treturn $this->app->lite->site->sbActivities->sbActivity(\n\t\t[\n\t\t\t'page'=>$this->app->lite->pageId,\n\t\t\t'app'=>$this->app->id,\n\t\t\t'name'=>'${1:action}',\n\t\t\t'id'=>$this->id,\n\t\t]\n\n\t);\n\n}$2"
     'Notebook':
         'prefix':'notebook'
-        'body':"####----------------------------------------------------------------------------\n#### notebook\n####----------------------------------------------------------------------------\n\npublic function notebook($pxOptions = array()) {\n\n\treturn $this->app->lite->site->sbNotebooks->sbNotebook(\n\t\t$this->app->lite->pageId,\n\t\t$this->app->lite->appId,\n\t\t'main',\n\t\t'${1:document}',\n\t\t$this->id,\n\t\t$this->rec->data['title'],\n\t\t[\n\t\t\t'parent'=>$this,\n\t\t\t'syncfields'=>[\n\t\t\t\t'title'=>$this->rec->data['title'],\n\t\t\t\t'hfrag'=>'${2:hashFrag}${3:'.$this->id.'}',\n\t\t\t\t'sec_name'=>'${4:${5:app}}',\n\t\t\t\t'sec_id'=>'${4:${6:full}}',\n\t\t\t\t'sec_action'=>'${4:${7:manage}}',\n\t\t\t],\n\t\t]\n\t);\n\n}$8"
+        'body':"####----------------------------------------------------------------------------\n#### notebook\n####----------------------------------------------------------------------------\n\npublic function notebook($pxOptions = []) {\n\n\treturn $this->app->lite->site->sbNotebooks->sbNotebook(\n\t\t$this->app->lite->pageId,\n\t\t$this->app->lite->appId,\n\t\t'main',\n\t\t'${1:document}',\n\t\t$this->id,\n\t\t$this->rec->data['title'],\n\t\t[\n\t\t\t'parent'=>$this,\n\t\t\t'syncfields'=>[\n\t\t\t\t'title'=>$this->rec->data['title'],\n\t\t\t\t'hfrag'=>'${2:hashFrag}${3:'.$this->id.'}',\n\t\t\t\t'sec_name'=>'${4:${5:app}}',\n\t\t\t\t'sec_id'=>'${4:${6:full}}',\n\t\t\t\t'sec_action'=>'${4:${7:manage}}',\n\t\t\t],\n\t\t]\n\t);\n\n}$8"
     'Notebook Activity':
         'prefix':'notebookactivity'
-        'body':"####----------------------------------------------------------------------------\n#### notebookActivity\n####----------------------------------------------------------------------------\n\npublic function notebookActivity($pxOptions = array()) {\n\n\treturn $this->app->lite->sbNotebooks->sbOb(\n\t\t$this->notebook,\n\t\t[\n\t\t\t'go'=>'${1:client/goal_activity}',\n\t\t],\n\t\t[\n\t\t\t'xlog_name_prefix'=>'activity',\n\t\t\t'xlog_title_prefix'=>'Activity',\n\t\t]\n\t);\n\n}$2"
+        'body':"####----------------------------------------------------------------------------\n#### notebookActivity\n####----------------------------------------------------------------------------\n\npublic function notebookActivity($pxOptions = []) {\n\n\treturn $this->app->lite->sbNotebooks->sbOb(\n\t\t$this->notebook,\n\t\t[\n\t\t\t'go'=>'${1:client/goal_activity}',\n\t\t],\n\t\t[\n\t\t\t'xlog_name_prefix'=>'activity',\n\t\t\t'xlog_title_prefix'=>'Activity',\n\t\t]\n\t);\n\n}$2"
     'Notebook Entry':
         'prefix':'entry'
         'body':"$entryOptions =   [\n\t'type'=>1,\n\t'user'=>${1:$results['user']},\n\t'comment'=>${2:$this->rec->data['title'].' document signed by '.$this->user->displayName},\n\t'uid'=>'${3:xAppObjectName}_'.${4:$this->id.'_user_'.$this->user->id}.'_initial',\n\t'activity_name'=>$this->${5:parent}->activity->ref['name'],\n\t'activity_id'=>$this->${5:parent}->activity->ref['id'],\n\t'importance'=>5,\n];\n\n$this->app->lite->site->sbUsers->sbUser($results['user'])->contactNotebook->sbEntries->create(\n\t$entryOptions\n);$6"

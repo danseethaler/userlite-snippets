@@ -1,0 +1,19 @@
+'.text.html, .text.html .meta.scope.between-tag-pair, .text.html .punctuation.tag.begin, text.html.php .meta.tag.inline.any.html':
+    'xStdGeo timezones':
+        'prefix':'xStdGeo_timezones'
+        'body':'xStdGeo::timezones($1);$2'
+    'xStdGeo stateAlt':
+        'prefix':'xStdGeo_stateAlt'
+        'body':'xStdGeo::stateAlt($1);$2'
+    'xStdGeo USStates':
+        'prefix':'xStdGeo_USStates'
+        'body':'xStdGeo::USStates($1);$2'
+    'xStdGeo caStates':
+        'prefix':'xStdGeo_caStates'
+        'body':'xStdGeo::caStates($1);$2'
+    'xStdGeo countries':
+        'prefix':'xStdGeo_countries'
+        'body':'xStdGeo::countries($1);$2'
+    'xStdGeo countriesNoTax':
+        'prefix':'xStdGeo_countriesNoTax'
+        'body':'xStdGeo::countriesNoTax($1);$2'
