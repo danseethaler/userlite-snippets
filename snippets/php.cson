@@ -333,8 +333,26 @@
     'Invalid Response':
         'prefix': 'invalid'
         'body':'if (!$response->valid) {\n\t$method->addProbs($response->probs);\n\treturn $method;\n}$1'
+    'Types Function':
+        'prefix':'fn_types'
+        'body':"""####-----------------------------------------------------------
+            #### ${1:types}
+            ####-----------------------------------------------------------
+
+            public function ${1:types}($pxOptions = array()) {
+
+            	return [
+            		${2:'1'}=>[
+            			'title'=>'${3:Intro}',
+            		],
+            		${4:'2'}=>[
+            			'title'=>'${5:Info}',
+            		],
+            	];
+
+            }"""
     'Rec Function':
-        'prefix':'fnrec'
+        'prefix':'fn_rec'
         'body':"""####------------------------------------------------------------------------
             #### rec
             ####------------------------------------------------------------------------
@@ -363,7 +381,7 @@
 
             }$2"""
     'Replace Old Rec Function':
-        'prefix':'fnrec_replace_old'
+        'prefix':'fn_rec_replace_old'
         'body':"""####-----------------------------------------------------------
             #### rec
             #### Add the sdbOld and scopeStringOld to App file
@@ -613,33 +631,18 @@
     'Force Current User':
         'prefix':'force_current'
         'body':'$iax->lite->site->sbUsers->forceCurrent = $${1:record}[\'user\'];$2'
-    'Trik Index File':
-        'prefix':'trik_index'
-        'body':'<?php\n\n\t#header(\'Access-Control-Allow-Origin: *\');\n\n\t#### Start Time ---------------------------------------------\n\t$timerStart = microtime(true);\n\n\t#### Response ---------------------------------------------\n\t$trikResponse = array(\n\t\t\'status\'=>\'ok\',\n\t\t\'return\'=>30,\n\t\t\'processTime\'=>0,\n\t\t\'statusMessage\'=>\'\',\n\t);\n\n\trequire_once $xPage->sub[1].\'.php\';\n\n\t#### Duration ---------------------------------------------\n\t$duration = microtime(true) - $timerStart;\n\t$trikResponse[\'processTime\'] = intval($duration * 1000);\n\n\n\t#### Return ---------------------------------------------\n\theader(\'Content-type: application/json\');\n\techo json_encode($trikResponse);\n'
-    'Trik Base File':
-        'prefix':'trik_base'
-        'body':"""<?php
-            // https://dev.userlite.com/apps/userlitestoreapps/${1:xrshopping}/v999/${2:healthplan/processMonthlyHealthplans}.htp
-
-            #### Process ---------------------------------------------
-            $response = $app->sbProcess->${3:monthlyHealthPlans}();
-
-            if ($response->valid) {
-            	$trikResponse['status'] = 'ok';
-            	if ($response->return['foundItemToProcess']) {
-            		// header('Refresh: 0;');
-            		$trikResponse['return'] = 5;
-            		$trikResponse['statusMessage'] = 'Found item to process: '.$response->return['foundItemToProcess'].'';
-            	} else {
-            		$trikResponse['return'] = 600;
-            		$trikResponse['statusMessage'] = 'All is well.';
-            	}
-            } else {
-            	$trikResponse['status'] = 'error';
-            	$trikResponse['return'] = 60;
-            	$trikResponse['statusMessage'] = implode('; ', $response->probs);
-            }
-            """
+    'Trik Create':
+        'prefix':'trik_create'
+        'body':"""$${1:this->}app->lite->appOb->sbTrikle->create([
+            'name'=>'${2:dealers_autopay}',
+            'method'=>'${3:dealers/autopay}',
+            'data'=>[
+                'scope_site'=>$app->lite->siteId,
+                'scope_page'=>$app->lite->pageId,
+            ],
+            'status'=>${4:2}, // 1 = Transitory, 2 = Active
+            'work_poll'=>${5:20}, // How many seconds to sleep between polling
+        ]);$6"""
     'Trik Method':
         'prefix':'fn_trik'
         'body':"""####-----------------------------------------------------------
@@ -650,6 +653,7 @@
 
         	    #### Start Method ---------------------------------------------
         	    $method = new xStdForm();
+    			$method->return = ['foundItemToProcess'=>0];
 
         	    #### Find an ${2:dealer} to process ---------------------------------------------
         	    if ($method->valid) {
