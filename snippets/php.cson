@@ -591,7 +591,7 @@
         'body':'$app->lite->sbPage->directPath${1:(1)}$2'
     'Standard UL Function':
         'prefix':'xs'
-        'body': 'xStdFx::${1:printPre}(${2:$sqlString})${3:;}$4'
+        'body': 'xStdFx::printPre(${1:$sqlString});$2'
     'PrintPre Exit':
         'prefix':'xx'
         'body': 'xStdFx::printPre(${1:$sqlString});\nexit;$2'
