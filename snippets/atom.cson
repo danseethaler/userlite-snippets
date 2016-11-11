@@ -1,0 +1,6 @@
+'.source.js':
+    'Atom Notification':
+        'prefix':'atom_notification'
+        'body':"""atom.notifications.addWarning(${1:'Unable to create file: - ' + err}, {
+				dismissable: true
+			});$2"""

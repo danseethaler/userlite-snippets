@@ -3,6 +3,5 @@
 'body':
     'cmd-q': 'core:save'
     'cmd-q cmd-q': 'application:quit'
-'body':
     'cmd-shift-w': 'core:save'
     'cmd-shift-w cmd-shift-w': 'window:close'
