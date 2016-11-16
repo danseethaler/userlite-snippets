@@ -1,7 +1,7 @@
 {
   "name": "userlite-snippets",
   "main": "./lib/userlite-snippets",
-  "version": "0.14.11",
+  "version": "0.15.0",
   "description": "Snippets for Userlite developers.",
   "keywords": [],
   "activationCommands": {
