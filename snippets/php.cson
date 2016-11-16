@@ -125,6 +125,16 @@
     'Form Group Select':
         'prefix':'fgs'
         'body': '<div class="form-group">\n\t<label for="fld_${1:terms}">${2:Terms}</label>\n\t<select class="form-control" name="fld_${1:terms}">${3:\n\t\t<option value="${4:0}">Select ${2:terms}...</option>}\n\t\t<?php ${6:\n\t\t\t${5:$options} = [\n\t\t\t\t\'0\'=>[\n\t\t\t\t\t\'title\'=>\'No\',\n\t\t\t\t],\n\t\t\t\t\'1\'=>[\n\t\t\t\t\t\'title\'=>\'Yes\',\n\t\t\t\t],\n\t\t\t];\n\n\t\t\t}foreach (${5:$options} as $${1:terms}Key => $${1:terms}) { ?>\n\t\t\t\t<option ${7:<?php echo $app->v->${8:item}->rec->data[\'${1:terms}\'] == $${1:terms}Key ? \' selected \' : \'\'; ?> }value="<?php echo $${1:terms}Key; ?>"><?php echo $${1:terms}[\'title\']; ?></option>\n\t\t<?php } ?>\n\t</select>\n</div>$9'
+    'Form Group Select Months':
+        'prefix':'fgs_months'
+        'body': """<div class="form-group">
+            	<select class="form-control" name="fld_card_month">${1:
+                    <option value="">Month</option>}
+                    <?php for($i=1;$i<=12;$i++) { ?>
+                        <option${2: <?php echo $app->v->${3:session}->rec->data['card_month'] == $i ? ' selected ' : ''; ?>} value="<?php echo $i; ?>"><?php echo $i.' - '.date_create($i.'/1/2001')->format('F'); ?></option>
+                        <?php } ?>
+                </select>
+            </div>$4"""
 
 # Upload Form and Actions
     'USL Upload Form':
@@ -624,10 +634,7 @@
             		'site'=>$${2:record}['site'],
             		'page'=>$${2:record}['page'],
             	]
-            ]);
-            ${3:
-            // Set the current user for the IAX
-            $iax->lite->site->sbUsers->forceCurrent = $${2:record}['user'];}$4"""
+            ]);$3"""
     'Force Current User':
         'prefix':'force_current'
         'body':'$iax->lite->site->sbUsers->forceCurrent = $${1:record}[\'user\'];$2'

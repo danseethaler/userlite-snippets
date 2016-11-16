@@ -1,0 +1,91 @@
+'.text.html, .text.html .meta.scope.between-tag-pair, .text.html .punctuation.tag.begin, text.html.php .meta.tag.inline.any.html':
+    'Or':
+        'prefix': 'sql_OR'
+        'body': '__OR'
+    'Like':
+        'prefix': 'sql_LIKE'
+        'body': '__LIKE'
+    'Orlike':
+        'prefix': 'sql_ORLIKE'
+        'body': '__ORLIKE'
+    'Less':
+        'prefix': 'sql_LESS'
+        'body': '__LESS'
+    'Less Equal':
+        'prefix': 'sql_LESS_EQUAL'
+        'body': '__LESS_EQUAL'
+    'Greater':
+        'prefix': 'sql_GREATER'
+        'body': '__GREATER'
+    'Greater Equal':
+        'prefix': 'sql_GREATER_EQUAL'
+        'body': '__GREATER_EQUAL'
+    'Not Equal':
+        'prefix': 'sql_NOT_EQUAL'
+        'body': '__NOT_EQUAL'
+    'SQL Insert Values':
+      'prefix': 'sql_insert_values'
+      'body': """foreach ($${1:pxProducts} as &$value) {
+			$value = implode(', ', [
+				'site'=>$this->app->lite->siteId,
+				'page'=>$this->app->lite->pageId,
+				${2:'condition_id'=>$this->id,
+				'product'=>$value}
+			]);
+		}
+
+		$sqlString = "
+			INSERT INTO condition_products
+				(site, page, ${3:condition_id, product})
+			VALUES
+				(".implode('), (', $${1:pxProducts}).")
+			ON DUPLICATE KEY
+			UPDATE site = site
+			";
+
+		$this->dbCon->qry($sqlString);$4"""
+    # 'txStart':
+    #     'prefix': 'xStdDb_txStart'
+    #     'body': 'xStdDb3::txStart($1)$2'
+    # 'txCommit':
+    #     'prefix': 'xStdDb_txCommit'
+    #     'body': 'xStdDb3::txCommit($1)$2'
+    # 'txRollback':
+    #     'prefix': 'xStdDb_txRollback'
+    #     'body': 'xStdDb3::txRollback($1)$2'
+    # '__call':
+    #     'prefix': 'xStdDb___call'
+    #     'body': 'xStdDb3::__call($1)$2'
+    # 'esc':
+    #     'prefix': 'xStdDb_esc'
+    #     'body': 'xStdDb3::esc($1)$2'
+    # 'sqlParts':
+    #     'prefix': 'xStdDb_sqlParts'
+    #     'body': 'xStdDb3::sqlParts($1)$2'
+    # 'qry':
+    #     'prefix': 'xStdDb_qry'
+    #     'body': 'xStdDb3::qry($1)$2'
+    # 'qryFix':
+    #     'prefix': 'xStdDb_qryFix'
+    #     'body': 'xStdDb3::qryFix($1)$2'
+    # 'getRows':
+    #     'prefix': 'xStdDb_getRows'
+    #     'body': 'xStdDb3::getRows($1)$2'
+    # 'getRowsId':
+    #     'prefix': 'xStdDb_getRowsId'
+    #     'body': 'xStdDb3::getRowsId($1)$2'
+    # 'getRow':
+    #     'prefix': 'xStdDb_getRow'
+    #     'body': 'xStdDb3::getRow($1)$2'
+    # 'getCol':
+    #     'prefix': 'xStdDb_getCol'
+    #     'body': 'xStdDb3::getCol($1)$2'
+    # 'getKVP':
+    #     'prefix': 'xStdDb_getKVP'
+    #     'body': 'xStdDb3::getKVP($1)$2'
+    # 'insert':
+    #     'prefix': 'xStdDb_insert'
+    #     'body': 'xStdDb3::insert($1)$2'
+    # 'tableSync':
+    #     'prefix': 'xStdDb_tableSync'
+    #     'body': 'xStdDb3::tableSync($1)$2'
