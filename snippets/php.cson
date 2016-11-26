@@ -426,9 +426,11 @@
     'xPage':
         'prefix':'xpage'
         'body': "$xPage->hashFrag('${1:document}','${2:documentid}')"
-    'pxOptions isset':
-        'prefix':'pxcheck'
-        'body':"if (isset($pxOptions['${1:merchant}'])) {\n\t$wheres[] = \" ${1:${2:merchant}} = \".intval($pxOptions['${1:merchant}']).\" \";\n}$3"
+    'Check for $pxOptions':
+        'prefix':'pxc'
+        'body':"""if (isset($pxOptions['${1:merchant}'])) {
+                $wheres['${1:merchant}'] = $pxOptions['${1:merchant}'];
+            }$2"""
     'Validate Input':
         'prefix':'validate-input'
         'body':"$method->validateInput('${1:Title}', ${2:$value}, ${3:required}, '${4:formatType}', ${5:maxLength});"
@@ -468,6 +470,21 @@
         'body':'json_decode(${1:$json}, true);$2'
 
 # Standard Utilities
+    'Download CSV':
+        'prefix': 'download_csv'
+        'body': """<?php
+
+            xRepAction('users/download');
+
+            $return = $app->sbUsers->downloadData;
+
+            $fileName = xStdFx::safeChars($app->lite->site->rec->data['title'].'_Users', 'pagename', '_').'.csv';
+
+            header("Content-type: text/csv");
+            header("Content-Disposition: attachment; filename=".$fileName);
+
+            xStdData::outputCsv(xStdData::arrayToCsv($return['users'], $return['fields']), $fileName);$1
+            """
     'Multi-Line PHP':
         'prefix':'pp'
         'body':'<?php\n\t$1\n?>'

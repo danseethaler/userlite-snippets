@@ -1,28 +1,49 @@
 '.text.html, .text.html .meta.scope.between-tag-pair, .text.html .punctuation.tag.begin, text.html.php .meta.tag.inline.any.html':
     'Or':
         'prefix': 'sql_OR'
-        'body': '__OR'
+        'body': """'__OR'=>[
+                $1
+            ]$2"""
     'Like':
         'prefix': 'sql_LIKE'
-        'body': '__LIKE'
+        'body': """'__LIKE'=>[
+                $1
+            ]$2"""
     'Orlike':
         'prefix': 'sql_ORLIKE'
-        'body': '__ORLIKE'
+        'body': """'__ORLIKE'=>[
+                $1
+            ]$2"""
+    'Not In':
+        'prefix': 'sql_NOT_IN'
+        'body': """'__NOT_IN'=>[
+                $1
+            ]$2"""
     'Less':
         'prefix': 'sql_LESS'
-        'body': '__LESS'
+        'body': """'__LESS'=>[
+                $1
+            ]$2"""
     'Less Equal':
         'prefix': 'sql_LESS_EQUAL'
-        'body': '__LESS_EQUAL'
+        'body': """'__LESS_EQUAL'=>[
+                $1
+            ]$2"""
     'Greater':
         'prefix': 'sql_GREATER'
-        'body': '__GREATER'
+        'body': """'__GREATER'=>[
+                $1
+            ]$2"""
     'Greater Equal':
         'prefix': 'sql_GREATER_EQUAL'
-        'body': '__GREATER_EQUAL'
+        'body': """'__GREATER_EQUAL'=>[
+                $1
+            ]$2"""
     'Not Equal':
         'prefix': 'sql_NOT_EQUAL'
-        'body': '__NOT_EQUAL'
+        'body': """'__NOT_EQUAL'=>[
+                $1
+            ]$2"""
     'SQL Insert Values':
       'prefix': 'sql_insert_values'
       'body': """foreach ($${1:pxProducts} as &$value) {
