@@ -91,6 +91,9 @@
     'Table Header':
         'prefix':'th'
         'body':'<th>\n\t$1\n</th>$2'
+    'Table Cell':
+        'prefix':'td'
+        'body':'<td>\n\t$1\n</td>'
 
 # Data Structure
     'Field':

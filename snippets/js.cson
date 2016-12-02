@@ -17,6 +17,44 @@
     'Console Log JSON with Message':
         'prefix':'logjm'
         'body':'console.log(${2:\'${1:stateUpdate}\', }JSON.stringify(${1:stateUpdate}, null, 4));$3'
+    
+    'Search Queue':
+      'prefix': 'queue_search'
+      'body': """var inputFields = $('#${1:mainHeaderSearch}');
+
+            var search = {
+                execute: function(){
+                    search.needsUpdate = true;
+                    search.checkAndLaunch();
+                },
+                checkAndLaunch: function() {
+                    if (!this.isUpdating && this.queue.length > 0) {
+
+                        this.isUpdating = true;
+                        var term = this.queue.pop();
+                        this.queue = [];
+
+                        hFrag.xAjax('', 'mods/${3:start/instances}/${2:instance_results}.ajx?terms=' + term, '${2:instance_results}');
+
+                    }
+                },
+                queue: [],
+                isUpdating: false,
+            };
+
+            inputFields.on('keyup', function(event) {
+
+                var term = $(this).val().toLowerCase();
+                search.queue.push(term);
+                search.execute();
+
+            });
+
+            search.queue.push('');
+            search.execute();${4:
+
+            search.isUpdating = false;
+            search.checkAndLaunch();}"""
     'Ajax Update Queue':
         'prefix':'queue_updates'
         'body':'var inputFields = $(\'${1:.various_input, .field_selectors}\');\n\nvar update = {\n\texecute: function() {\n\t\tif (!this.isUpdating && this.queue.length > 0) {\n\t\t\t\n\t\t\tthis.isUpdating = true;\n\t\t\tvar term = this.queue.pop();\n\t\t\tthis.queue = [];\n\n\t\t\thFrag.xAjax(\'\', \'${3:mods}/${2:results_div_id}.ajx?action=update\', \'xRec\', \'${4:formMain}\');\n\n\t\t}\n\t},\n\tqueue: [],\n\tisUpdating: false,\n};\n\ninputFields.on(\'keyup\', function(event) {\n\n\tvar term = jQuery(this).val().toLowerCase();\n\tupdate.queue.push(term);\n\tupdate.execute();\n\n});\n\n${5:update.isUpdating = false;\nupdate.execute();\n}$6'
