@@ -10,14 +10,25 @@
         'body':'console.log(${1:stateUpdate});$2'
     'Console Log with Comment':
         'prefix':'logm'
-        'body':'console.log(${2:\'${1:stateUpdate}\', }${1:stateUpdate});$3'
+        'body':'console.log(\'${2:${1:stateUpdate}}\', ${1:stateUpdate});$3'
     'Console Log JSON':
         'prefix':'logj'
         'body':'console.log(JSON.stringify(${1:stateUpdate}, null, 4));$2'
     'Console Log JSON with Message':
         'prefix':'logjm'
         'body':'console.log(${2:\'${1:stateUpdate}\', }JSON.stringify(${1:stateUpdate}, null, 4));$3'
-    
+
+    'Filter Object Keys':
+        'prefix':'fn_filter_keys'
+        'body':"""function filterKeys(ob, search) {
+            search = search.toLowerCase();
+            var results = Object.keys(ob).filter(function(key){
+                return key.toLowerCase().indexOf(search) >= 0;
+            });
+
+            console.log(JSON.stringify(results, null, 4));
+        }"""
+
     'Search Queue':
       'prefix': 'queue_search'
       'body': """var inputFields = $('#${1:mainHeaderSearch}');
