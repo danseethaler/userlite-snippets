@@ -138,6 +138,17 @@
                         <?php } ?>
                 </select>
             </div>$4"""
+    'Form Group Select States':
+        'prefix':'fgs_states'
+        'body': """<div class="form-group">
+                <label>${1:State}</label>
+                <select class="form-control" name="fld_${2:state}">
+                    <option value="">Select State...</option>
+                    <?php foreach (xStdGeo::USStates() as $abv => $state) { ?>
+                        <option <?php echo $app->v->${3:item}->rec->data['${2:state}'] == $abv ? ' selected ' : ''; ?> value="<?php echo $abv ?>"><?php echo $state; ?></option>
+                    <?php } ?>
+                </select>
+            </div>$4"""
 
 # Upload Form and Actions
     'USL Upload Form':
@@ -664,8 +675,8 @@
             'name'=>'${2:dealers_autopay}',
             'method'=>'${3:dealers/autopay}',
             'data'=>[
-                'scope_site'=>$app->lite->siteId,
-                'scope_page'=>$app->lite->pageId,
+                'scope_site'=>$${1:this->}app->lite->siteId,
+                'scope_page'=>$${1:this->}app->lite->pageId,
             ],
             'status'=>${4:2}, // 1 = Transitory, 2 = Active
             'work_poll'=>${5:20}, // How many seconds to sleep between polling
