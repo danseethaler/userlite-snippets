@@ -379,6 +379,7 @@
         'prefix':'fn_rec'
         'body':"""####------------------------------------------------------------------------
             #### rec
+            #### Note: Return the database record
             ####------------------------------------------------------------------------
 
             public function rec($pxOptions = []) {
@@ -386,24 +387,22 @@
                 $rec = new stdClass();
 
                 $wheres = [
-                    '__LESS'=>[
-                        'status'=>90
-                    ],
                     'site'=>$this->app->lite->siteId,
                     'page'=>$this->app->lite->pageId,
+                    'id'=>$this->id,
                 ];
 
                 $sqlString = "
-                    SELECT *
-                    FROM ${1:bank_accounts}
-                    WHERE ".$this->dbCon->sqlParts($wheres, 'AND')."
-                    ";
+                SELECT *
+                FROM ${1:bank_accounts}
+                WHERE ".$this->dbCon->sqlParts($wheres, 'AND')."
+                ";
 
-                $rec->data = $this->dbDst->getRow($sqlString);
+                $rec->data = $this->dbCon->getRow($sqlString);
 
                 return $this->gets['rec'] = $rec;
 
-            }$2"""
+            }${2: // Comment out the public rec at the top}"""
     'Replace Old Rec Function':
         'prefix':'fn_rec_replace_old'
         'body':"""####-----------------------------------------------------------
