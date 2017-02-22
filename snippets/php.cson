@@ -511,9 +511,7 @@
         }$2"""
     'Microtime Timer':
         'prefix':'timer'
-        'body':"""$start = microtime();
-            xStdFx::printPre(microtime() - $start);
-            exit;$1"""
+        'body':"""xStdFx::printPre('${1:process_name}: '.intval((microtime(true) - $GLOBALS['start_my_timer']) * 1000));${2:\n$GLOBALS['start_my_timer'] = microtime(true);}$3"""
     'Autoname':
         'prefix':'fn_autoname'
         'body':"""####------------------------------------------------------------------------
@@ -625,7 +623,7 @@
             $app->sbApi->run($options);$1"""
     'USL Return Query String':
         'prefix':'uslqs_return'
-        'body':"window.location = '/user/login?uslqs_return=' + encodeURI('/<?php echo xStdFx::gv('uslapp_directpath'); ?>');$2"
+        'body':"window.location = '/user/login?uslqs_return=' + encodeURIComponent('/<?php echo xStdFx::gv('uslapp_directpath'); ?>');$2"
     'Direct Path':
         'prefix':'dp'
         'body':'$app->lite->sbPage->directPath${1:(1)}$2'
