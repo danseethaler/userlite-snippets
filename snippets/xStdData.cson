@@ -1,0 +1,22 @@
+'.text.html, .text.html .meta.scope.between-tag-pair, .text.html .punctuation.tag.begin, text.html.php .meta.tag.inline.any.html':
+    'csvFieldFix':
+        'prefix':'xStdData_csvFieldFix'
+        'body':'xStdData::csvFieldFix($1)$2'
+    'outputCsv':
+        'prefix':'xStdData_outputCsv'
+        'body':'xStdData::outputCsv($1)$2'
+    'csvToArray':
+        'prefix':'xStdData_csvToArray'
+        'body':'xStdData::csvToArray($1)$2'
+    'arrayToCsv':
+        'prefix':'xStdData_arrayToCsv'
+        'body':'xStdData::arrayToCsv($1)$2'
+    'specialFix':
+        'prefix':'xStdData_specialFix'
+        'body':'xStdData::specialFix($1)$2'
+    'special':
+        'prefix':'xStdData_special'
+        'body':'xStdData::special($1)$2'
+    'specialFull':
+        'prefix':'xStdData_specialFull'
+        'body':'xStdData::specialFull($1)$2'
