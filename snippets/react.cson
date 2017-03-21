@@ -1,0 +1,39 @@
+'.source.js':
+    # Create components
+    'React Create Class':
+        'prefix':'rc'
+        'body':"""React.createClass({
+            render: function() {
+                return uie(${1:'div'}, {className: 'container'}$2);
+            }
+        });"""
+    'UI Element [React.createElement]':
+        'prefix': 'uie'
+        'body': 'uie(${1:\'div\'}, ${2:\\{className: \'${3:class}\'\\}}$4)$5'
+    'UI Element - Multiline':
+        'prefix': 'uiee'
+        'body': 'uie(\n\t${1:\'div\'}, ${2:\\{className: \'${3:class}\'\\}}$4\n)$5'
+
+    # Userlite
+    'Require':
+        'prefix':'rq'
+        'body':"if (ui.require('${1:app}//${2:libs/components}/1.0.0/${3:general}.js', this)) return null;$4"
+    'Fast Data':
+        'prefix':'fd'
+        'body':"""ui.state.fastData(
+            '${2:event}',
+            '${1:app//data.htp?datapoint=${2:event}}'
+        );$3"""
+    'Fast Data Item':
+        'prefix':'fd_item'
+        'body':"""ui.state.fastData(
+            '${1:event}-'+ui.router.part(${2:3}),
+            'app//data.htp?datapoint=${1:event}&${1:event}='+ui.router.part(${2:3})
+        );$3"""
+    'CDN Image':
+        'prefix':'cdn_image'
+        'body':"""ui.cdn.imageUrl(
+            ${1:this.props.image_main},
+            {${2: maxD: 300 }}${3:,
+            "bg_val"}
+        )$4"""

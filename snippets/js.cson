@@ -1,17 +1,7 @@
 '.source.js':
-    # React Snippets
-    'UI Element [React.createElement]':
-        'prefix': 'uie'
-        'body': 'uie(${1:\'div\'}, ${2:\\{className: \'${3:class}\'\\}}$4)$5'
-    'UI Element - Multiline':
-        'prefix': 'uiee'
-        'body': 'uie(\n\t${1:\'div\'}, ${2:\\{className: \'${3:class}\'\\}}$4\n)$5'
     'Comment':
         'prefix':'c'
         'body':'/* $1 */'
-    'hFrag Ajax URL':
-        'prefix':'ajax_url'
-        'body':'hFrag.xAjaxURL(\'${1:mods/language_lesson/action.ajx?action=config}\')$2'
     'Console Log':
         'prefix':'log'
         'body':'console.log(${1:stateUpdate});$2'
@@ -24,7 +14,11 @@
     'Console Log JSON with Message':
         'prefix':'logjm'
         'body':'console.log(${2:\'${1:stateUpdate}\', }JSON.stringify(${1:stateUpdate}, null, 4));$3'
-
+    'Map Object':
+        'prefix': 'map_ob'
+        'body': """Object.keys(${1:users}).map(function(${2:userId}, index) {
+            ${1:users}[${2:userId}]
+            });$3"""
     'Filter Object Keys':
         'prefix':'fn_filter_keys'
         'body':"""function filterKeys(ob, search) {
@@ -36,6 +30,10 @@
             console.log(JSON.stringify(results, null, 4));
         }"""
 
+    # Legacy and hFrag snippets
+    'hFrag Ajax URL':
+        'prefix':'ajax_url'
+        'body':'hFrag.xAjaxURL(\'${1:mods/language_lesson/action.ajx?action=config}\')$2'
     'Search Queue':
       'prefix': 'queue_search'
       'body': """var inputFields = $('#${1:mainHeaderSearch}');
