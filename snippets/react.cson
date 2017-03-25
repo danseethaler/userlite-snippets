@@ -17,7 +17,10 @@
     # Userlite
     'Require':
         'prefix':'rq'
-        'body':"if (ui.require('${1:app}//${2:libs/components}/1.0.0/${3:general}.js', this)) return null;$4"
+        'body':"""var reqs = [
+            '${1:app}//${2:libs/components}/1.0.0/${3:general}.js$4'
+        ];
+        if (ui.require(reqs, this)) return null;"""
     'Fast Data':
         'prefix':'fd'
         'body':"""ui.state.fastData(

@@ -160,6 +160,21 @@
     'Upload Method':
         'prefix':'fn_upload'
         'body':'####----------------------------------------------------------------------------\n#### upload\n####----------------------------------------------------------------------------\n\npublic function upload($pxData, $pxOptions = []) {\n\n\t$location = $this->app->lite->sbUpload->fileMoveData($pxData);\n\n\treturn $this->update([\n\t\t\'${1:file_path}\'=>$location\n\t]);\n\n}$2'
+    'Upload Method':
+        'prefix':'fn_upload'
+        'body':"""####----------------------------------------------------------------------------
+            #### upload
+            ####----------------------------------------------------------------------------
+            // ${2:$fields = xStdFx::fieldsToArray('nocheck');}
+            public function upload($pxData, $pxOptions = []) {
+
+                $location = $this->app->lite->sbUpload->fileMoveData($pxData);
+
+                return $this->update([
+                    '${1:file_path}'=>$location
+                ]);
+
+            }$3"""
 
 # SQL
     'wheres[]':
