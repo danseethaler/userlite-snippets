@@ -1,5 +1,13 @@
 '.text.html':
 
+# Userlite
+    'Set Page Title':
+        'prefix':'page_title'
+        'body':'<div id="ul_page_title">${2:<?php echo $${1:product}[\'title\']; ?>}</div>$3'
+    'Set Page Description':
+        'prefix':'page_desc'
+        'body':'<div id="ul_page_description">${2:<?php echo $${1:product}[\'description\']; ?>}</div>$3'
+
 # Navigation
     'Userlite Menu':
         'prefix':'ul_menu'
