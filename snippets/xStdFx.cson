@@ -47,6 +47,9 @@
     'xStdFx getSize':
         'prefix':'xStdFx_getSize'
         'body':'xStdFx::getSize($1)$2'
+    'xStdFx echoJsonOb':
+        'prefix':'xStdFx_echoJsonOb'
+        'body':'xStdFx::echoJsonOb($1)$2'
     'xStdFx jsonEncode':
         'prefix':'xStdFx_jsonEncode'
         'body':'xStdFx::jsonEncode($1)$2'
