@@ -5,3 +5,6 @@
     'cmd-q cmd-q': 'application:quit'
     'cmd-shift-w': 'core:save'
     'cmd-shift-w cmd-shift-w': 'window:close'
+    'cmd-;': 'userlite-utilities:insert-arrow'
+    'cmd-alt-;': 'userlite-utilities:insert-fat-arrow'
+    'cmd-alt-m': 'bracket-matcher:select-inside-brackets'
