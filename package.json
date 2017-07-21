@@ -4,9 +4,6 @@
   "version": "0.18.1",
   "description": "Snippets for Userlite developers.",
   "keywords": [],
-  "activationCommands": {
-    "atom-workspace": "userlite-snippets:toggle"
-  },
   "repository": "https://github.com/userlite/userlite-snippets",
   "license": "MIT",
   "engines": {
